@@ -26,7 +26,6 @@ public class FormsPage extends DemoQaBase {
 
 
 //======================================================================================================================
-
     public void clickOnFormsButton() {                         //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU
         for (int i = 0; i < buttonsList.size(); i++) {
             if (buttonsList.get(i).getText().equals("Forms")) {

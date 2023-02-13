@@ -509,6 +509,7 @@ public class ElementsPageTest extends DemoQaBase {
         driver.manage().deleteAllCookies();
         driver.quit();
     }
+
 }
 
 //                                      SCROOL DOWN

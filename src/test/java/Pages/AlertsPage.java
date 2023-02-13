@@ -42,16 +42,6 @@ public class AlertsPage extends DemoQaBase {
 
 
 
-
-
-
-
-
-
-    // Template za pretragu elemenata:
-// @FindBy(css = "tag[atribute = 'value']")
-// public WebElement element;
-
 //======================================================================================================================
 
     public void clickOnAlertsButton() {                        //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU

@@ -26,6 +26,13 @@ public class WidgetsPage extends DemoQaBase {
     public @FindBy(id="section3Content") WebElement thirdParagraphText;
 
 
+    public @FindBy(id="react-select-4-option-0") WebElement multiColorOptionMen;
+    public @FindBy(id="autoCompleteMultipleContainer") WebElement multiColorTextBox;
+
+
+
+
+
 
 
 

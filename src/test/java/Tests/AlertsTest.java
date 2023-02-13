@@ -25,10 +25,9 @@ public class AlertsTest extends DemoQaBase {
         driver.get(homePageURL);
         firstPage = new FirstPage();
         alertsPage = new AlertsPage();
-
     }
     public void goToAlertsPage () throws InterruptedException {
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         firstPage.clickOnAlertsCard();
         Assert.assertEquals(driver.getCurrentUrl(),alertsPageURL);
     }
@@ -36,10 +35,11 @@ public class AlertsTest extends DemoQaBase {
     public void formsCardRollUp () throws InterruptedException {
         goToAlertsPage ();
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         alertsPage.clickOnAlertsButton();
         Assert.assertFalse(IsDisplayed(alertsPage.alertsRollDown));
     }
+
     //==================================================================================================================
     @Test (priority = 20)
     public void browserWindowsCheck () throws InterruptedException {
@@ -204,7 +204,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Small Modal"));
         alertsPage.closeSmallModalButton.click();
         // KAKO DA KLIKNEM VAN PROZORCICA
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 210)
@@ -214,7 +214,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Small Modal"));
         alertsPage.closeXModalButton.click();
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 220)
@@ -224,7 +224,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Large Modal"));
         alertsPage.closeLargeModalButton.click();
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 230)
@@ -234,7 +234,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Large Modal"));
         alertsPage.closeXModalButton.click();
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
 

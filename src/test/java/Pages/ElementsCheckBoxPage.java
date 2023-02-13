@@ -25,6 +25,7 @@ public class ElementsCheckBoxPage extends DemoQaBase {
     public @FindBy(xpath = "//*[@id=\"tree-node\"]/div/button[1]") WebElement plusSign;
     public @FindBy(xpath = "//*[@id=\"tree-node\"]/div/button[2]") WebElement minusSign;
     public @FindBy(id = "result") WebElement result;
+
 //    ====================================================================
 
 

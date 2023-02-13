@@ -17,9 +17,6 @@ public class CardsTest extends DemoQaBase {
 
     @BeforeMethod
     public void setUpPage () {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        ChromeDriver driver1 = new ChromeDriver(options);
         driver = new ChromeDriver();
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();

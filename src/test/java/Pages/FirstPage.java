@@ -42,7 +42,6 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
     public void clickOnWidgetsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Widgets")) {

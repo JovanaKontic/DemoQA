@@ -9,7 +9,6 @@ import java.util.List;
 public class ElementsPage extends DemoQaBase {
     public ElementsPage() { PageFactory.initElements(driver,this);
     }
-
     public @FindBy(className ="header-text") List<WebElement> buttonsList;  // RADI NE MENJAJ
     public @FindBy(css =".element-list.collapse.show") WebElement elementsRollDown;
     public @FindBy( className = "main-header") WebElement titlePage;

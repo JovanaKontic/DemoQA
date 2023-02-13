@@ -38,7 +38,6 @@ public class WidgetsTest extends DemoQaBase {
     }
 
     //==================================================================================================================
-
     @Test (priority = 20)
     public void accordianCheck () throws InterruptedException {
         goToWidgetsPage ();
@@ -65,6 +64,24 @@ public class WidgetsTest extends DemoQaBase {
         Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(widgetsPage.tabVisibility));
     }
+
+    //==================================================================================================================
+    @Test (priority = 20)
+    public void autoCompleteCheck () throws InterruptedException {
+        goToWidgetsPage ();
+        widgetsPage.clickOnWidgetsMenuButton("Auto Complete");
+        Assert.assertTrue(IsDisplayed(widgetsPage.titlePage));
+    }
+    @Test (priority = 20)
+    public void multiColorTextBox () throws InterruptedException {
+        autoCompleteCheck ();
+        textBoxFieldsInputs(widgetsPage.multiColorTextBox, "ma");
+
+
+    }
+
+
+
 
 
 

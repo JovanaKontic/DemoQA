@@ -85,4 +85,5 @@ public class FormsTest extends DemoQaBase {
         driver.manage().deleteAllCookies();
         driver.quit();
     }
+
 }
