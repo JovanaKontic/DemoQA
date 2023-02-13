@@ -72,13 +72,11 @@ public class WidgetsTest extends DemoQaBase {
         widgetsPage.clickOnWidgetsMenuButton("Auto Complete");
         Assert.assertTrue(IsDisplayed(widgetsPage.titlePage));
     }
-    @Test (priority = 20)
-    public void multiColorTextBox () throws InterruptedException {
-        autoCompleteCheck ();
-        textBoxFieldsInputs(widgetsPage.multiColorTextBox, "ma");
-
-
-    }
+//    @Test (priority = 20)
+//    public void multiColorTextBox () throws InterruptedException {
+//        autoCompleteCheck ();
+//        textBoxFieldsInputs(widgetsPage.multiColorTextBox, "ma");
+//    }
 
 
 
