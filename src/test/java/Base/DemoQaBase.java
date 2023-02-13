@@ -57,10 +57,7 @@ public class DemoQaBase {
         brokenLinkURL = excelReader.getStringData("URL", 8, 1);
         practiceFormURL = excelReader.getStringData("URL", 9, 1);
         newTabAlertsURL = excelReader.getStringData("URL", 10, 1);
-
     }
-
-
     public boolean IsDisplayed(WebElement element) {
 //        Ova metoda funkcionise samo ako se elementi nalaze preko anotacija, ne preko getera
         boolean webelement = false;
@@ -71,9 +68,9 @@ public class DemoQaBase {
         }
         return webelement;
     }
-    public void scrollIntoView(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
+//    public void scrollIntoView(WebElement element) {
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+//    }
 
     public void waitForVisibility(WebElement element) {
         waiter.until(ExpectedConditions.visibilityOf(element));
@@ -100,20 +97,14 @@ public class DemoQaBase {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));", element);
     }
-
-
+//    public void waitPageVisible (String url){
+//        waiter.until(ExpectedConditions.urlToBe("url"));
+//    }
     @AfterClass
     public void shutDown () {
-//        driver.close();
+        driver.close();
     }
 
 }
 
 
-//    public void waitElementClickable (WebElement element){
-//        wdwait.until(ExpectedConditions.elementToBeClickable(element));
-//    }
-//
-//    public void waitPageVisible (String url){
-//        wdwait.until(ExpectedConditions.urlToBe("url"));
-//    }
