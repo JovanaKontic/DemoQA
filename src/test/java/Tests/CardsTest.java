@@ -14,7 +14,7 @@ import java.time.Duration;
 
 
 public class CardsTest extends DemoQaBase {
-
+// This test class is to check "PING" cards on the main page (https://demoqa.com/)
     @BeforeMethod
     public void setUpPage () {
         driver = new ChromeDriver();
