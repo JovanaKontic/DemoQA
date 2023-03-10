@@ -60,7 +60,7 @@ public class CardsTest extends DemoQaBase {
     @AfterMethod
     public void shutDownTest () {
         driver.manage().deleteAllCookies();
-        driver.quit();
+        driver.close();
     }
 
 }

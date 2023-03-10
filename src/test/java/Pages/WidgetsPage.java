@@ -30,14 +30,6 @@ public class WidgetsPage extends DemoQaBase {
     public @FindBy(id="autoCompleteMultipleContainer") WebElement multiColorTextBox;
 
 
-
-
-
-
-
-
-
-
     // Template za pretragu elemenata:
 // @FindBy(css = "tag[atribute = 'value']")
 // public WebElement element;

@@ -21,18 +21,23 @@ public class AlertsTest extends DemoQaBase {
     public void setUpPage () {
         driver = new ChromeDriver();
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get(homePageURL);
         firstPage = new FirstPage();
         alertsPage = new AlertsPage();
     }
-    public void goToAlertsPage () throws InterruptedException {
-//        Thread.sleep(3000);
+    public void goToAlertsPage () {
         firstPage.clickOnAlertsCard();
         Assert.assertEquals(driver.getCurrentUrl(),alertsPageURL);
     }
+    @Test (priority = 9)
+    public void logoButtonChecking() {
+        goToAlertsPage ();
+        firstPage.logoButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
+    }
     @Test(priority = 10)
-    public void formsCardRollUp () throws InterruptedException {
+    public void formsCardRollUp () {
         goToAlertsPage ();
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
 //        Thread.sleep(3000);
@@ -42,13 +47,13 @@ public class AlertsTest extends DemoQaBase {
 
     //==================================================================================================================
     @Test (priority = 20)
-    public void browserWindowsCheck () throws InterruptedException {
+    public void browserWindowsCheck () {
         goToAlertsPage ();
         alertsPage.clickOnAlertsMenuButton("Browser Windows");
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
     }
     @Test (priority = 30)
-    public void newTabCheck () throws InterruptedException {
+    public void newTabCheck () {
         browserWindowsCheck ();
         String oldTab = driver.getWindowHandle();
         alertsPage.newTabButton.click();
@@ -58,7 +63,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),newTabAlertsURL);
     }
     @Test (priority = 40)
-    public void newWindowCheck () throws InterruptedException {
+    public void newWindowCheck () {
         browserWindowsCheck ();
         String oldTab = driver.getWindowHandle();
         alertsPage.newWindowButton.click();
@@ -68,7 +73,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),newTabAlertsURL);
     }
 //    @Test (priority = 50)
-//    public void newWindowMessageCheck () throws InterruptedException {
+//    public void newWindowMessageCheck () {
 //        browserWindowsCheck ();
 //        String oldTab = driver.getWindowHandle();
 //        alertsPage.newWindowMessageButton.click();
@@ -82,13 +87,13 @@ public class AlertsTest extends DemoQaBase {
 
     //==================================================================================================================
     @Test (priority = 60)
-    public void alertsCheck () throws InterruptedException {
+    public void alertsCheck () {
         goToAlertsPage ();
         alertsPage.clickOnAlertsMenuButton("Alerts");
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
     }
     @Test (priority = 70)
-    public void alertButtonCheck () throws InterruptedException {
+    public void alertButtonCheck () {
         alertsCheck();
         alertsPage.alertButton.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("You clicked a button"));
@@ -103,7 +108,7 @@ public class AlertsTest extends DemoQaBase {
         driver.switchTo().alert().accept();
     }
     @Test (priority = 90)
-    public void confirmBoxCheckYes () throws InterruptedException {
+    public void confirmBoxCheckYes () {
         alertsCheck();
         alertsPage.confirmBoxButton.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("Do you confirm action?"));
@@ -111,7 +116,7 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(alertsPage.confirmMessage.getText().contains("Ok"));
     }
     @Test (priority = 100)
-    public void confirmBoxCheckNo () throws InterruptedException {
+    public void confirmBoxCheckNo () {
         alertsCheck();
         alertsPage.confirmBoxButton.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("Do you confirm action?"));
@@ -119,13 +124,12 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertTrue(alertsPage.confirmMessage.getText().contains("Cancel"));
     }
     @Test (priority = 110)
-    public void promptBoxCheckOk () throws InterruptedException {
+    public void promptBoxCheckOk () {
         String firstName = excelReader.getStringData("PracticeForms", 0, 1);
         alertsCheck();
         alertsPage.promptBox.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("Please enter your name"));
         driver.switchTo().alert().sendKeys(firstName);
-        Thread.sleep(3000);
         driver.switchTo().alert().accept();
         Assert.assertTrue(alertsPage.promptMessage.getText().contains(firstName));
     }
@@ -136,12 +140,11 @@ public class AlertsTest extends DemoQaBase {
         alertsPage.promptBox.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("Please enter your name"));
         driver.switchTo().alert().sendKeys(firstName);
-        Thread.sleep(3000);
         driver.switchTo().alert().dismiss();
         Assert.assertTrue(IsEnabled(alertsPage.promptBox));
     }
     @Test (priority = 130)
-    public void promptBoxCheckEmptyOK () throws InterruptedException {
+    public void promptBoxCheckEmptyOK () {
         alertsCheck();
         alertsPage.promptBox.click();
         Assert.assertTrue(driver.switchTo().alert().getText().contains("Please enter your name"));
@@ -151,20 +154,20 @@ public class AlertsTest extends DemoQaBase {
 
     //==================================================================================================================
     @Test (priority = 140)
-    public void framesCheck () throws InterruptedException {
+    public void framesCheck () {
         goToAlertsPage ();
         alertsPage.clickOnAlertsMenuButton("Frames");
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
     }
     @Test (priority = 150)
-    public void iframe1Exists () throws InterruptedException {
+    public void iframe1Exists () {
         framesCheck ();
         Assert.assertTrue(IsDisplayed(alertsPage.iFrame1));
         driver.switchTo().frame(alertsPage.iFrame1);
         Assert.assertTrue(alertsPage.iFrameText.getText().contains("This is a sample page"));
     }
     @Test (priority = 160)
-    public void iframe2Exists () throws InterruptedException {
+    public void iframe2Exists () {
         framesCheck ();
         Assert.assertTrue(IsDisplayed(alertsPage.iFrame2));
         driver.switchTo().frame(alertsPage.iFrame2);
@@ -173,13 +176,13 @@ public class AlertsTest extends DemoQaBase {
 
     //==================================================================================================================
     @Test (priority = 170)
-    public void nestedFramesCheck () throws InterruptedException {
+    public void nestedFramesCheck () {
         goToAlertsPage ();
         alertsPage.clickOnAlertsMenuButton("Nested Frames");
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
     }
     @Test (priority = 180)
-    public void switchingFrameFlow () throws InterruptedException {
+    public void switchingFrameFlow () {
         nestedFramesCheck();
         Assert.assertTrue(IsDisplayed(alertsPage.iFrame1));
         driver.switchTo().frame(alertsPage.iFrame1);
@@ -191,7 +194,7 @@ public class AlertsTest extends DemoQaBase {
     //==================================================================================================================
 
     @Test (priority = 190)
-    public void modalsCheck () throws InterruptedException {
+    public void modalsCheck () {
         goToAlertsPage ();
         alertsPage.clickOnAlertsMenuButton("Modal Dialogs");
         Assert.assertTrue(IsDisplayed(alertsPage.titlePage));
@@ -208,40 +211,37 @@ public class AlertsTest extends DemoQaBase {
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 210)
-    public void smallModalXCheck () throws InterruptedException {
+    public void smallModalXCheck () {
         modalsCheck ();
         alertsPage.smallModalButton.click();
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Small Modal"));
         alertsPage.closeXModalButton.click();
-//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 220)
-    public void largeModalCheck () throws InterruptedException {
+    public void largeModalCheck () {
         modalsCheck ();
         alertsPage.largeModalButton.click();
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Large Modal"));
         alertsPage.closeLargeModalButton.click();
-//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
     @Test (priority = 230)
-    public void largeModalXCheck () throws InterruptedException {
+    public void largeModalXCheck () {
         modalsCheck ();
         alertsPage.largeModalButton.click();
         Assert.assertTrue(IsDisplayed(alertsPage.modalWindow));
         Assert.assertTrue(alertsPage.modalWindow.getText().contains("Large Modal"));
         alertsPage.closeXModalButton.click();
-//        Thread.sleep(3000);
         Assert.assertFalse(IsDisplayed(alertsPage.modalWindow));
     }
 
     @AfterMethod
     public void shutDownTest () {
         driver.manage().deleteAllCookies();
-        driver.quit();
+        driver.close();
     }
 
 }

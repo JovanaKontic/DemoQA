@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class ElementsPageTest extends DemoQaBase {
     @BeforeMethod
     public void setUpPage () {
-//
         driver = new ChromeDriver();
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -27,30 +26,33 @@ public class ElementsPageTest extends DemoQaBase {
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
         checkBoxPage = new ElementsCheckBoxPage();
-
     }
-    public void goToElementsPage () throws InterruptedException {
-        Thread.sleep(3000);
+    public void goToElementsPage () {
         firstPage.clickOnElementsCard();
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
     }
+    @Test (priority = 9)
+    public void logoButtonChecking() {
+        goToElementsPage ();
+        firstPage.logoButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
+    }
     @Test (priority = 10)
-    public void elementsCardRollUp () throws InterruptedException {
+    public void elementsCardRollUp () {
         goToElementsPage ();
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-        Thread.sleep(3000);
         elementsPage.clickOnElementsButton();
         Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));
     }
 //    ==================================================================================================================
     @Test (priority = 20)
-    public void textBoxCheck () throws InterruptedException {
+    public void textBoxCheck () {
         goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Text Box");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 25)
-    public void textBoxFlow () throws InterruptedException {
+    public void textBoxFlow () {
         String fullname = excelReader.getStringData("TextBox", 0,1);
         String email = excelReader.getStringData("TextBox", 1,1);
         String currentAddress = excelReader.getStringData("TextBox", 2,1);
@@ -64,7 +66,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(elementsPage.outputMessageField.getText().contains(":"));
     }
     @Test (priority = 30)
-    public void textBoxFieldFlow () throws InterruptedException {
+    public void textBoxFieldFlow () {
         String fullname = excelReader.getStringData("TextBox", 0,1);
         textBoxCheck();
         textBoxFieldsInputs(elementsPage.fullNameField,fullname);
@@ -72,20 +74,20 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(elementsPage.outputMessageField.getText().contains(":"));
     }
     @Test (priority = 35)
-    public void textBoxFieldsEmptyFlow () throws InterruptedException {
+    public void textBoxFieldsEmptyFlow (){
         textBoxCheck();
         elementsPage.submitButton.click();
         Assert.assertFalse(elementsPage.outputMessageField.getText().contains(":"));
     }
 //    ==================================================================================================================
     @Test (priority = 40)
-    public void checkBoxCheck () throws InterruptedException {
+    public void checkBoxCheck ()   {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Check Box");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 45)
-    public void checkBoxArrowsFlow () throws InterruptedException {
+    public void checkBoxArrowsFlow ()   {
         checkBoxCheck();
         checkBoxPage.homeArrow.click();
         Assert.assertTrue(IsDisplayed(checkBoxPage.desktopCheckBox));
@@ -101,7 +103,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(checkBoxPage.wordFileCheckBox));
     }
     @Test (priority = 50)
-    public void checkBoxesFlow () throws InterruptedException {
+    public void checkBoxesFlow () {
         checkBoxCheck();
         checkBoxPage.plusSign.click();
         checkBoxPage.homeCheckBox.click();
@@ -113,52 +115,52 @@ public class ElementsPageTest extends DemoQaBase {
     }
 //    ==================================================================================================================
     @Test (priority = 60)
-    public void radioButtonCheck () throws InterruptedException {
+    public void radioButtonCheck () {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Radio Button");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
         Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
     }
     @Test (priority = 65)
-    public void radioButtonYes () throws InterruptedException {
+    public void radioButtonYes () {
         radioButtonCheck ();
         elementsPage.yesRadioButton.click();
         Assert.assertTrue(elementsPage.getRadioMessage().contains("Yes"));
     }
     @Test (priority = 70)
-    public void radioButtonImpressive () throws InterruptedException {
+    public void radioButtonImpressive () {
         radioButtonCheck ();
         elementsPage.impressiveRadioButton.click();
         Assert.assertTrue(elementsPage.getRadioMessage().contains("Impressive"));
     }
     @Test (priority = 80)
-    public void radioButtonNo () throws InterruptedException {
+    public void radioButtonNo () {
         radioButtonCheck ();
         String noClickPlace = elementsPage.noRadioButton.getCssValue("cursor");
         Assert.assertEquals(noClickPlace, "not-allowed");
     }
 //    ==================================================================================================================
     @Test (priority = 90)
-    public void webTablesCheck () throws InterruptedException {
+    public void webTablesCheck () {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Web Tables");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 95)
-    public void webTablesAdd () throws InterruptedException {
+    public void webTablesAdd () {
         webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 100)
-    public void webTablesSearch () throws InterruptedException {
+    public void webTablesSearch () {
         String firstName = excelReader.getStringData("WebTables", 0,1);
         webTablesCheck ();
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);
         Assert.assertTrue(IsDisplayed(elementsPage.noRowMessagaWebTables));
     }
     @Test (priority = 110)
-    public void webTablesFlow () throws InterruptedException {
+    public void webTablesFlow () {
         String firstName = excelReader.getStringData("WebTables", 0,1);
         String lastName = excelReader.getStringData("WebTables", 1,1);
         String email = excelReader.getStringData("WebTables", 2,1);
@@ -188,7 +190,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.noRowMessagaWebTables));
     }
     @Test (priority = 120)
-    public void webTablesInvalidRegistrationFirstnameFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationFirstnameFlow () {
         String firstName = excelReader.getStringData("WebTables", 0,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
@@ -198,7 +200,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 121)
-    public void webTablesInvalidRegistrationLastNameFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationLastNameFlow () {
         String lastName = excelReader.getStringData("WebTables", 1,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
@@ -208,7 +210,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 122)
-    public void webTablesInvalidRegistrationEmailFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationEmailFlow () {
         String email = excelReader.getStringData("WebTables", 2,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
@@ -218,7 +220,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 123)
-    public void webTablesInvalidRegistrationAgeFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationAgeFlow () {
         String age = excelReader.getStringData("WebTables", 3,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
@@ -228,16 +230,17 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 124)
-    public void webTablesInvalidRegistrationSalaryFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationSalaryFlow () {
         String salary = excelReader.getStringData("WebTables", 4,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);        elementsPage.submitButton.click();
+        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
+        elementsPage.submitButton.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 125)
-    public void webTablesInvalidRegistrationDepartmentFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationDepartmentFlow () {
         String department = excelReader.getStringData("WebTables", 5,1);
         webTablesCheck ();
         elementsPage.addWebTables.click();
@@ -247,7 +250,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 126)
-    public void webTablesInvalidRegistrationEmptyFlow () throws InterruptedException {
+    public void webTablesInvalidRegistrationEmptyFlow () {
         webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
@@ -256,7 +259,8 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
     @Test (priority = 130)
-    public void webTablesAdd3AccountsFlow () throws InterruptedException {
+    public void webTablesAdd3AccountsFlow () {
+// Creating 3 new accounts so that we can check if the next and previous buttons works
         String firstName = excelReader.getStringData("WebTables", 0, 1);
         String lastName = excelReader.getStringData("WebTables", 1, 1);
         String email = excelReader.getStringData("WebTables", 2, 1);
@@ -312,7 +316,6 @@ public class ElementsPageTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
         elementsPage.submitButton.click();
 
-
         waitForVisibility(elementsPage.rowDropDownWebTables);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -327,26 +330,26 @@ public class ElementsPageTest extends DemoQaBase {
     //***********************  JOS DODAJ KAD BUDES STIGLA TESTOVE ZA SORT DESC I ASC ***********************************
 //    ==================================================================================================================
     @Test (priority = 140)
-    public void buttonsCheck () throws InterruptedException {
+    public void buttonsCheck () {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Buttons");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 150)
-    public void buttonsDoubleClick () throws InterruptedException {
+    public void buttonsDoubleClick () {
         buttonsCheck();
         doubleClickWithJS(elementsPage.doubleClickButton);
         Assert.assertTrue(IsDisplayed(elementsPage.doubleClickMessage));
     }
     @Test (priority = 160)
-    public void buttonsRightClick () throws InterruptedException {
+    public void buttonsRightClick () {
         Actions action = new Actions(driver);
         buttonsCheck();
         action.contextClick(elementsPage.rightClickButton).perform();
         Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
     }
     @Test (priority = 170)
-    public void buttonsJustClick () throws InterruptedException {
+    public void buttonsJustClick () {
         buttonsCheck();
         elementsPage.clickOnJustClick();
         Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
@@ -354,13 +357,13 @@ public class ElementsPageTest extends DemoQaBase {
 
 //    ==================================================================================================================
     @Test (priority = 180)
-    public void linksCheck () throws InterruptedException {
+    public void linksCheck () {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 190)
-    public void linksHome () throws InterruptedException {
+    public void linksHome () {
        linksCheck();
        String oldTab = driver.getWindowHandle();
        elementsPage.simpleLink.click();
@@ -370,7 +373,7 @@ public class ElementsPageTest extends DemoQaBase {
        Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
     }
     @Test (priority = 200)
-    public void linksHomeDynamic () throws InterruptedException {
+    public void linksHomeDynamic () {
         linksCheck();
         String oldTab = driver.getWindowHandle();
         elementsPage.dynamicLink.click();
@@ -380,49 +383,49 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
     }
     @Test (priority = 210)
-    public void linksCreated () throws InterruptedException {
+    public void linksCreated () {
         linksCheck();
         elementsPage.createdLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("201"));
     }
     @Test (priority = 220)
-    public void linksNoContent () throws InterruptedException {
+    public void linksNoContent () {
         linksCheck();
         elementsPage.noContentLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("204"));
     }
     @Test (priority = 230)
-    public void linksMoved () throws InterruptedException {
+    public void linksMoved ()   {
         linksCheck();
         elementsPage.movedLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("301"));
     }
     @Test (priority = 240)
-    public void linksBadRequest () throws InterruptedException {
+    public void linksBadRequest ()   {
         linksCheck();
         elementsPage.badRequestLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("400"));
     }
     @Test (priority = 250)
-    public void linksUnauthorized () throws InterruptedException {
+    public void linksUnauthorized ()   {
         linksCheck();
         elementsPage.unauthorizedLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("401"));
     }
     @Test (priority = 260)
-    public void linksForbidden () throws InterruptedException {
+    public void linksForbidden ()   {
         linksCheck();
         elementsPage.forbiddenLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
         Assert.assertTrue(elementsPage.linkResponseLink.getText().contains("403"));
     }
     @Test (priority = 270)
-    public void linksNotFound () throws InterruptedException {
+    public void linksNotFound ()   {
         linksCheck();
         elementsPage.notFoundLink.click();
         waitForVisibility(elementsPage.linkResponseLink);
@@ -431,40 +434,39 @@ public class ElementsPageTest extends DemoQaBase {
 
 //    ==================================================================================================================
     @Test (priority = 280)
-    public void brokenLinksCheck () throws InterruptedException {
+    public void brokenLinksCheck ()   {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 290)
-    public void brokenlinksValidLink () throws InterruptedException {
+    public void brokenlinksValidLink ()   {
         brokenLinksCheck();
         elementsPage.validLink.click();
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 300)
-    public void brokenlinksBrokenLink() throws InterruptedException {
+    public void brokenlinksBrokenLink()   {
         brokenLinksCheck();
         elementsPage.brokenLink.click();
         Assert.assertEquals(driver.getCurrentUrl(),brokenLinkURL);
     }
 
 //    ==================================================================================================================
-
     @Test (priority = 310)
-    public void uploadAndDownloadCheck () throws InterruptedException {
+    public void uploadAndDownloadCheck ()   {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 320)
-    public void downloadValidation () throws InterruptedException {
+    public void downloadValidation () {
         uploadAndDownloadCheck();
         elementsPage.downloadButton.click();
 //      KAKO ASERTOVATI DA JE FAJL SKINUT ?? LINK RESPONSE 200 ???
     }
 //    @Test (priority = 330)
-//    public void uploadValidation () throws InterruptedException {
+//    public void uploadValidation ()   {
 //        uploadAndDownloadCheck();
 //        waitForClickability(elementsPage.uploadFileButton);
 //        elementsPage.uploadFileButton.click();
@@ -473,32 +475,32 @@ public class ElementsPageTest extends DemoQaBase {
 
 //    ==================================================================================================================
     @Test (priority = 340)
-    public void dynamicPropertiesCheck () throws InterruptedException {
+    public void dynamicPropertiesCheck ()   {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
 //    @Test (priority = 350)
-//    public void randomIDValidation () throws InterruptedException {    // KAKO DA ASERTUJEM AKO MU SE MENJA ID
+//    public void randomIDValidation ()   {    // KAKO DA ASERTUJEM AKO MU SE MENJA ID
 //        dynamicPropertiesCheck ();
 //        waitForVisibility(elementsPage.randomIDText);
 //        Assert.assertTrue(elementsPage.randomIDText.getText().contains("This text has random Id"));
 //    }
     @Test (priority = 350)
-    public void enableAfterButtonValidation () throws InterruptedException {
+    public void enableAfterButtonValidation ()   {
         dynamicPropertiesCheck ();
         waitForClickability(elementsPage.enableAfterButton);
         Assert.assertTrue(IsEnabled(elementsPage.enableAfterButton));
     }
     @Test (priority = 360)
-    public void colorChangeValidation () throws InterruptedException {
+    public void colorChangeValidation ()   {
         dynamicPropertiesCheck ();
         Assert.assertFalse(IsDisplayed(elementsPage.colorChangeButton));
         waitForVisibility(elementsPage.colorChangeButton);
         Assert.assertTrue(IsDisplayed(elementsPage.colorChangeButton));
     }
     @Test (priority = 370)
-    public void visibleAfterValidation () throws InterruptedException {
+    public void visibleAfterValidation ()   {
         dynamicPropertiesCheck ();
         Assert.assertFalse(IsDisplayed(elementsPage.visibleAfterButton));
         waitForVisibility(elementsPage.visibleAfterButton);
@@ -507,7 +509,7 @@ public class ElementsPageTest extends DemoQaBase {
     @AfterMethod
     public void shutDownTest () {
         driver.manage().deleteAllCookies();
-        driver.quit();
+        driver.close();
     }
 
 }
