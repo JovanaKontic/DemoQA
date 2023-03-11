@@ -31,8 +31,6 @@ public class DemoQaBase {
     public String practiceFormURL;
     public String newTabAlertsURL;
 
-
-
     public FirstPage firstPage;
     public ElementsPage elementsPage;
     public ElementsCheckBoxPage checkBoxPage;
@@ -64,20 +62,8 @@ public class DemoQaBase {
         try {
             webelement = element.isDisplayed();
         } catch (Exception e) {
-
         }
         return webelement;
-    }
-//    public void scrollIntoView(WebElement element) {
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//    }
-
-    public void waitForVisibility(WebElement element) {
-        waiter.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public void waitForClickability(WebElement element) {
-        waiter.until(ExpectedConditions.elementToBeClickable(element));
     }
     public boolean IsEnabled(WebElement element) {
 //        Ova metoda funkcionise samo ako se elementi nalaze preko anotacija, ne preko getera
@@ -85,9 +71,21 @@ public class DemoQaBase {
         try {
             webelement = element.isEnabled();
         } catch (Exception e) {
-
         }
         return webelement;
+    }
+    public String getTextFromWebElement(WebElement element) {
+        return element.getText();
+    }
+    public void scrollIntoView(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public void waitForVisibility(WebElement element) {
+        waiter.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitForClickability(WebElement element) {
+        waiter.until(ExpectedConditions.elementToBeClickable(element));
     }
     public void textBoxFieldsInputs (WebElement element, String string) {  //ZA UNOS TEXTA U TEX BOX
         element.clear();
