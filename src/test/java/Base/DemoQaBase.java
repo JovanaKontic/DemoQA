@@ -97,12 +97,12 @@ public class DemoQaBase {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));", element);
     }
-//    public void waitPageVisible (String url){
-//        waiter.until(ExpectedConditions.urlToBe("url"));
-//    }
+    public void waitPageVisible (String url){
+        waiter.until(ExpectedConditions.urlToBe("url"));
+    }
     @AfterClass
     public void shutDown () {
-        driver.close();
+        driver.quit();
     }
 
 }

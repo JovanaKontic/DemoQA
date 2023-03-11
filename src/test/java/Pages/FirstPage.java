@@ -13,9 +13,9 @@ public class FirstPage extends DemoQaBase {
     }
 
     public @FindBy(css =  ".card.mt-4.top-card") List<WebElement> cardList;
+    public @FindBy(css = "img[src='/images/Toolsqa.jpg']") WebElement logoButton;
 
 //======================================================
-
     public void clickOnElementsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Elements")) {
@@ -24,7 +24,6 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
     public void clickOnFormsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Forms")) {
@@ -33,7 +32,6 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
     public void clickOnAlertsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Alerts, Frame & Windows")) {
@@ -50,7 +48,6 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
     public void clickOnInteractionsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Interactions")) {
@@ -59,7 +56,6 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
     public void clickOnBookstoreCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Book Store Application")) {
@@ -68,4 +64,10 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
+
+    // Template za pretragu elemenata:
+// @FindBy(css = "tag[atribute = 'value']")
+// public WebElement element;
+
+
 }

@@ -40,8 +40,6 @@ public class AlertsPage extends DemoQaBase {
     public @FindBy(id = "showLargeModal") WebElement largeModalButton;
     public @FindBy(id = "closeLargeModal") WebElement closeLargeModalButton;
 
-
-
 //======================================================================================================================
 
     public void clickOnAlertsButton() {                        //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU
