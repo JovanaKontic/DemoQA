@@ -12,6 +12,8 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(className ="header-text") List<WebElement> buttonsList;  // RADI NE MENJAJ
     public @FindBy(css =".element-list.collapse.show") WebElement elementsRollDown;
     public @FindBy( className = "main-header") WebElement titlePage;
+    public  @FindBy (css = "path[d = 'M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']") WebElement arrowUp;
+    public  @FindBy (css = "path[d = 'M3 19h18v2H3v-2zm10-5.828L19.071 7.1l1.414 1.414L12 17 3.515 8.515 4.929 7.1 11 13.17V2h2v11.172z']") WebElement arrowDown;
     public @FindBy(className = "text") List<WebElement> elementsPageList;
     public @FindBy(id = "submit") WebElement submitButton;
     public @FindBy(id = "userName") WebElement fullNameField;
@@ -92,9 +94,6 @@ public class ElementsPage extends DemoQaBase {
                 break;
             }
         }
-    }
-    public String getRadioMessage() {
-        return radioButtonMessage.getText();
     }
     public boolean checkWebTable(String string) {                //DA LI SADRZI STRING IZ PARAMETRA
         for (int i = 0; i < contentWebTable.size(); i++) {

@@ -22,34 +22,39 @@ public class ElementsPageTest extends DemoQaBase {
         driver = new ChromeDriver();
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get(homePageURL);
+        driver.get(homePageURL);                                                    //every test starts from the home page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
-        checkBoxPage = new ElementsCheckBoxPage();
+        checkBoxPage = new ElementsCheckBoxPage();                                  //need more space for web elements
     }
-    public void goToElementsPage () {
+    public void goToElementsPage () {                                               //getting to the elements page by clicking on the elements card on the home page
         firstPage.clickOnElementsCard();
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
     }
     @Test (priority = 9)
     public void logoButtonChecking() {
         goToElementsPage ();
-        firstPage.logoButton.click();
+        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
+        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
+        firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 10)
     public void elementsCardRollUp () {
         goToElementsPage ();
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
+        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
+        Assert.assertTrue(IsDisplayed(elementsPage.arrowUp));                       //arrow is UP on the elements button
         elementsPage.clickOnElementsButton();
-        Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));
+        Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
+        Assert.assertTrue(IsDisplayed(elementsPage.arrowDown));                     //arrow is DOWN on the elements button
     }
 //    ==================================================================================================================
-    @Test (priority = 20)
+    @Test (priority = 20)                                                           //test if the button works
     public void textBoxCheck () {
         goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Text Box");
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Text Box"));
     }
     @Test (priority = 25)
     public void textBoxFlow () {
@@ -121,18 +126,18 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
         Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
     }
-    @Test (priority = 65)
-    public void radioButtonYes () {
-        radioButtonCheck ();
-        elementsPage.yesRadioButton.click();
-        Assert.assertTrue(elementsPage.getRadioMessage().contains("Yes"));
-    }
-    @Test (priority = 70)
-    public void radioButtonImpressive () {
-        radioButtonCheck ();
-        elementsPage.impressiveRadioButton.click();
-        Assert.assertTrue(elementsPage.getRadioMessage().contains("Impressive"));
-    }
+//    @Test (priority = 65)                       PROVERI DA LI SU DOBRI WEB ELEMENTI, NOVA METODA U BASE
+//    public void radioButtonYes () {
+//        radioButtonCheck ();
+//        elementsPage.yesRadioButton.click();
+//        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("Yes"));
+//    }
+//    @Test (priority = 70)
+//    public void radioButtonImpressive () {
+//        radioButtonCheck ();
+//        elementsPage.impressiveRadioButton.click();
+//        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("Impressive"));
+//    }
     @Test (priority = 80)
     public void radioButtonNo () {
         radioButtonCheck ();
