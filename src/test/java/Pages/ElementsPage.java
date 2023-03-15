@@ -4,6 +4,8 @@ import Base.DemoQaBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 import java.util.List;
 
 public class ElementsPage extends DemoQaBase {
@@ -79,6 +81,10 @@ public class ElementsPage extends DemoQaBase {
 
 
 //======================================================================================================================
+    public void goToElementsPage () {                                               //getting to the elements page by clicking on the elements card on the home page
+        firstPage.clickOnElementsCard();
+        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
+}
     public void clickOnElementsButton() { //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU
         for (int i = 0; i < buttonsList.size(); i++) {
             if (buttonsList.get(i).getText().equals("Elements")) {
