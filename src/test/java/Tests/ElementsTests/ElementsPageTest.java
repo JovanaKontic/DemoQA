@@ -1,4 +1,4 @@
-package Tests;
+package Tests.ElementsTests;
 
 import Base.DemoQaBase;
 import Pages.ElementsCheckBoxPage;
@@ -7,6 +7,7 @@ import Pages.ElementsPage;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 public class ElementsPageTest extends DemoQaBase {
     @BeforeMethod
     public void setUpPage () {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(homePageURL);                                                    //every test starts from the home page
@@ -27,67 +30,28 @@ public class ElementsPageTest extends DemoQaBase {
         elementsPage = new ElementsPage();
         checkBoxPage = new ElementsCheckBoxPage();                                  //need more space for web elements
     }
-    public void goToElementsPage () {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-    }
     @Test (priority = 9)
     public void logoButtonChecking() {
-        goToElementsPage ();
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
+        elementsPage.goToElementsPage ();
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 10)
     public void elementsCardRollUp () {
-        goToElementsPage ();
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
+        elementsPage.goToElementsPage ();
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
+        Assert.assertTrue(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowUp));                       //arrow is UP on the elements button
         elementsPage.clickOnElementsButton();
         Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowDown));                     //arrow is DOWN on the elements button
     }
 //    ==================================================================================================================
-    @Test (priority = 20)                                                           //test if the button works
-    public void textBoxCheck () {
-        goToElementsPage ();
-        elementsPage.clickOnElementsMenuButton("Text Box");
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Text Box"));
-    }
-    @Test (priority = 25)
-    public void textBoxFlow () {
-        String fullname = excelReader.getStringData("TextBox", 0,1);
-        String email = excelReader.getStringData("TextBox", 1,1);
-        String currentAddress = excelReader.getStringData("TextBox", 2,1);
-        String permanentAddress = excelReader.getStringData("TextBox", 1,1);
-        textBoxCheck();
-        textBoxFieldsInputs(elementsPage.fullNameField,fullname);
-        textBoxFieldsInputs(elementsPage.emailField,email);
-        textBoxFieldsInputs(elementsPage.currentAddressField,currentAddress);
-        textBoxFieldsInputs(elementsPage.permanentAddressField,permanentAddress);
-        elementsPage.submitButton.click();
-        Assert.assertTrue(elementsPage.outputMessageField.getText().contains(":"));
-    }
-    @Test (priority = 30)
-    public void textBoxFieldFlow () {
-        String fullname = excelReader.getStringData("TextBox", 0,1);
-        textBoxCheck();
-        textBoxFieldsInputs(elementsPage.fullNameField,fullname);
-        elementsPage.submitButton.click();
-        Assert.assertTrue(elementsPage.outputMessageField.getText().contains(":"));
-    }
-    @Test (priority = 35)
-    public void textBoxFieldsEmptyFlow (){
-        textBoxCheck();
-        elementsPage.submitButton.click();
-        Assert.assertFalse(elementsPage.outputMessageField.getText().contains(":"));
-    }
-//    ==================================================================================================================
+
     @Test (priority = 40)
     public void checkBoxCheck ()   {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Check Box");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -121,7 +85,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 60)
     public void radioButtonCheck () {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Radio Button");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
         Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
@@ -147,7 +111,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 90)
     public void webTablesCheck () {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Web Tables");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -336,7 +300,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 140)
     public void buttonsCheck () {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Buttons");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -363,7 +327,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 180)
     public void linksCheck () {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -440,7 +404,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 280)
     public void brokenLinksCheck ()   {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -460,7 +424,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 310)
     public void uploadAndDownloadCheck ()   {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -481,7 +445,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 340)
     public void dynamicPropertiesCheck ()   {
-        goToElementsPage();
+        elementsPage.goToElementsPage ();
         elementsPage.clickOnElementsMenuButton("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
