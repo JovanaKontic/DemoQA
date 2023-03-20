@@ -56,6 +56,10 @@ public class DemoQaBase {
         practiceFormURL = excelReader.getStringData("URL", 9, 1);
         newTabAlertsURL = excelReader.getStringData("URL", 10, 1);
     }
+    public void textBoxFieldsInputs (WebElement element, String string) {  //ZA UNOS TEXTA U TEX BOX
+        element.clear();
+        element.sendKeys(string);
+    }
     public boolean IsDisplayed(WebElement element) {
 //        Ova metoda funkcionise samo ako se elementi nalaze preko anotacija, ne preko getera
         boolean webelement = false;
@@ -80,16 +84,15 @@ public class DemoQaBase {
     public void scrollIntoView(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
+//                                      SCROOL DOWN
+//    JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     public void waitForVisibility(WebElement element) {
         waiter.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForClickability(WebElement element) {
         waiter.until(ExpectedConditions.elementToBeClickable(element));
-    }
-    public void textBoxFieldsInputs (WebElement element, String string) {  //ZA UNOS TEXTA U TEX BOX
-        element.clear();
-        element.sendKeys(string);
     }
     public void doubleClickWithJS(WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -98,10 +101,10 @@ public class DemoQaBase {
     public void waitPageVisible (String url){
         waiter.until(ExpectedConditions.urlToBe("url"));
     }
-    @AfterClass
-    public void shutDown () {
-        driver.quit();
-    }
+//    @AfterClass
+//    public void shutDown () {
+//        driver.quit();
+//    }
 
 }
 
