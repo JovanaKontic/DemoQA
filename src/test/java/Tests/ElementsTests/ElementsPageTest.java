@@ -11,7 +11,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.time.Duration;
@@ -30,18 +29,21 @@ public class ElementsPageTest extends DemoQaBase {
         elementsPage = new ElementsPage();
         checkBoxPage = new ElementsCheckBoxPage();                                  //need more space for web elements
     }
-    @Test (priority = 9)
-    public void logoButtonChecking() {
-        elementsPage.goToElementsPage ();
+    public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
+        firstPage.clickOnElementsCard();
+        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
+    }
+    @Test (priority = 10)
+    public void shouldReturnToHomePageAfterClickingOnLogoButton() {
+        goToElementsPage();
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
-    @Test (priority = 10)
-    public void elementsCardRollUp () {
-        elementsPage.goToElementsPage ();
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
-        Assert.assertTrue(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
+    @Test (priority = 20)
+    public void elementsMenuShouldRollUp() {
+        goToElementsPage();
+        Assert.assertTrue(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we see rolldown menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowUp));                       //arrow is UP on the elements button
         elementsPage.clickOnElementsButton();
         Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
@@ -49,13 +51,13 @@ public class ElementsPageTest extends DemoQaBase {
     }
 //    ==================================================================================================================
 
-    @Test (priority = 40)
+    @Test (priority = 30)
     public void checkBoxCheck ()   {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Check Box");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
-    @Test (priority = 45)
+    @Test (priority = 40)
     public void checkBoxArrowsFlow ()   {
         checkBoxCheck();
         checkBoxPage.homeArrow.click();
@@ -85,7 +87,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 60)
     public void radioButtonCheck () {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Radio Button");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
         Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
@@ -111,7 +113,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 90)
     public void webTablesCheck () {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Web Tables");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -300,7 +302,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 140)
     public void buttonsCheck () {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Buttons");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -327,7 +329,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 180)
     public void linksCheck () {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -404,7 +406,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 280)
     public void brokenLinksCheck ()   {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -424,7 +426,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 310)
     public void uploadAndDownloadCheck ()   {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -445,7 +447,7 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 340)
     public void dynamicPropertiesCheck ()   {
-        elementsPage.goToElementsPage ();
+        goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
@@ -475,11 +477,11 @@ public class ElementsPageTest extends DemoQaBase {
         waitForVisibility(elementsPage.visibleAfterButton);
         Assert.assertTrue(IsDisplayed(elementsPage.visibleAfterButton));
     }
-    @AfterMethod
-    public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
-    }
+//    @AfterMethod
+//    public void shutDownTest () {
+//        driver.manage().deleteAllCookies();
+//        driver.close();
+//    }
 
 }
 

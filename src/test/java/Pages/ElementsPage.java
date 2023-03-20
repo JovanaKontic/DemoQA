@@ -4,7 +4,6 @@ import Base.DemoQaBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -81,10 +80,6 @@ public class ElementsPage extends DemoQaBase {
 
 
 //======================================================================================================================
-    public void goToElementsPage () {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-}
     public void clickOnElementsButton() { //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU
         for (int i = 0; i < buttonsList.size(); i++) {
             if (buttonsList.get(i).getText().equals("Elements")) {
@@ -101,7 +96,7 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    public boolean checkWebTable(String string) {                //DA LI SADRZI STRING IZ PARAMETRA
+    public boolean checkWebTable(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
         for (int i = 0; i < contentWebTable.size(); i++) {
             if (contentWebTable.get(i).getText().contains(string)) {
                 contentWebTable.get(i).click();
@@ -110,7 +105,7 @@ public class ElementsPage extends DemoQaBase {
         }
         return false;
     }
-    public void clickOnJustClick() {     //ZA JUST CLICK
+    public void clickOnJustClick() {                                            //ZA JUST CLICK
         for (int i = 0; i < justClickButton.size(); i++) {
             if (justClickButton.get(i).getText().equals("Click Me")) {
                 justClickButton.get(i).click();
