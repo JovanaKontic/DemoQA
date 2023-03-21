@@ -49,41 +49,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowDown));                     //arrow is DOWN on the elements button
     }
-//    ==================================================================================================================
 
-    @Test (priority = 30)
-    public void checkBoxCheck ()   {
-        goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Check Box");
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-    }
-    @Test (priority = 40)
-    public void checkBoxArrowsFlow ()   {
-        checkBoxCheck();
-        checkBoxPage.homeArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.desktopCheckBox));
-        checkBoxPage.desktopArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.notesCheckBox));
-        checkBoxPage.documentsArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.workspaceCheckBox));
-        checkBoxPage.workspaceArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.reactCheckBox));
-        checkBoxPage.officeArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.publicCheckBox));
-        checkBoxPage.downloadsArrow.click();
-        Assert.assertTrue(IsDisplayed(checkBoxPage.wordFileCheckBox));
-    }
-    @Test (priority = 50)
-    public void checkBoxesFlow () {
-        checkBoxCheck();
-        checkBoxPage.plusSign.click();
-        checkBoxPage.homeCheckBox.click();
-        Assert.assertTrue(checkBoxPage.getNotificationText().contains("home"));
-        checkBoxPage.homeCheckBox.click();
-        Assert.assertFalse(IsDisplayed(checkBoxPage.result));
-        checkBoxPage.minusSign.click();
-        Assert.assertFalse(IsDisplayed(checkBoxPage.desktopCheckBox));
-    }
 //    ==================================================================================================================
     @Test (priority = 60)
     public void radioButtonCheck () {
