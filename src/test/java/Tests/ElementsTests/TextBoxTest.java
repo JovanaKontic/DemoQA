@@ -106,9 +106,4 @@ public class TextBoxTest extends DemoQaBase {
         driver.manage().deleteAllCookies();
         driver.close();
     }
-
-
-
-
-
 }
