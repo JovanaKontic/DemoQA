@@ -4,6 +4,7 @@ import Base.DemoQaBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class ElementsPage extends DemoQaBase {
 
 
 //======================================================================================================================
-    public void clickOnElementsButton() { //METODA DA IZLISTA IZ GLAVNOD MENIJA (HOME PAGE) KARTICU
+    public void clickOnElementsButton() {                   //METODA DA IZLISTA IZ ELEMENTS MENIJA MAIN BUTTON PO IMENU (ELEMENTS)
         for (int i = 0; i < buttonsList.size(); i++) {
             if (buttonsList.get(i).getText().equals("Elements")) {
                 buttonsList.get(i).click();
