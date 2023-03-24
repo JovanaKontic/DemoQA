@@ -35,7 +35,6 @@ public class CheckBoxTest extends DemoQaBase {
         goToElementsPage();
         elementsPage.clickOnElementsMenuButton("Check Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Check Box"));
-
     }
     @Test (priority = 40)
     public void checkBoxArrowsFlow ()   {
