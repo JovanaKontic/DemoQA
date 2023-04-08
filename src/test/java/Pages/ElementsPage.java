@@ -4,14 +4,13 @@ import Base.DemoQaBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.util.List;
 
 public class ElementsPage extends DemoQaBase {
     public ElementsPage() { PageFactory.initElements(driver,this);
     }
-    public @FindBy(className ="header-text") List<WebElement> buttonsList;  // RADI NE MENJAJ
+    public @FindBy(className ="header-text") List<WebElement> buttonsList;
     public @FindBy(css =".element-list.collapse.show") WebElement elementsRollDown;
     public @FindBy( className = "main-header") WebElement titlePage;
     public  @FindBy (css = "path[d = 'M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']") WebElement arrowUp;
@@ -23,7 +22,7 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "currentAddress") WebElement currentAddressField;
     public @FindBy(id = "permanentAddress") WebElement permanentAddressField;
     public @FindBy(id = "output") WebElement outputMessageField;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public @FindBy(className = "mb-3") WebElement radioButtonText;
     public @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[2]/label") WebElement yesRadioButton;
     public @FindBy(className = "mt-3") WebElement radioButtonMessage;
@@ -79,9 +78,8 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(css = ".mt-4.text-danger.btn.btn-primary") WebElement colorChangeButton;
     public @FindBy(id = "visibleAfter") WebElement visibleAfterButton;
 
-
 //======================================================================================================================
-    public void clickOnElementsButton() {                   //METODA DA IZLISTA IZ ELEMENTS MENIJA MAIN BUTTON PO IMENU (ELEMENTS)
+    public void clickOnElementsButton() {              // on ELEMENTS page to click on main ELEMENTS button to roll-down/up menu
         for (int i = 0; i < buttonsList.size(); i++) {
             if (buttonsList.get(i).getText().equals("Elements")) {
                 buttonsList.get(i).click();
@@ -89,7 +87,7 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    public void clickOnElementsMenuButton(String text) {     //METODA DA IZLISTA IZ ELEMENTS MENIJA BUTTON PO IMENU (TEXT)
+    public void clickOnTheButtonFromTheElementsMenu(String text) {    //on ELEMENTS page to choose an item from the ELEMENTS menu
         for (int i = 0; i < elementsPageList.size(); i++) {
             if (elementsPageList.get(i).getText().equals(text)) {
                 elementsPageList.get(i).click();
@@ -97,6 +95,7 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public boolean checkWebTable(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
         for (int i = 0; i < contentWebTable.size(); i++) {
             if (contentWebTable.get(i).getText().contains(string)) {

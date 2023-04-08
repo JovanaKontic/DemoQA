@@ -78,15 +78,21 @@ public class DemoQaBase {
         }
         return webelement;
     }
+    public boolean IsSelected(WebElement element) {
+//        Ova metoda funkcionise samo ako se elementi nalaze preko anotacija, ne preko getera
+        boolean webelement = false;
+        try {
+            webelement = element.isSelected();
+        } catch (Exception e) {
+        }
+        return webelement;
+    }
     public String getTextFromWebElement(WebElement element) {
         return element.getText();
     }
     public void scrollIntoView(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-//                                      SCROOL DOWN
-//    JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     public void waitForVisibility(WebElement element) {
         waiter.until(ExpectedConditions.visibilityOf(element));
     }
@@ -98,6 +104,12 @@ public class DemoQaBase {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));", element);
     }
+//    public void clickOn (WebElement element) {
+//        element.click();
+//    }
+//    SCROOL DOWN
+//    JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     public void waitPageVisible (String url){
         waiter.until(ExpectedConditions.urlToBe("url"));
     }
