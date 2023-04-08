@@ -1,7 +1,6 @@
 package Tests.ElementsTests;
 
 import Base.DemoQaBase;
-import Pages.ElementsCheckBoxPage;
 import Pages.FirstPage;
 import Pages.ElementsPage;
 
@@ -27,7 +26,6 @@ public class ElementsPageTest extends DemoQaBase {
         driver.get(homePageURL);                                                    //every test starts from the home page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
-        checkBoxPage = new ElementsCheckBoxPage();                                  //need more space for web elements
     }
     public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
         firstPage.clickOnElementsCard();
@@ -43,10 +41,10 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 20)
     public void elementsMenuShouldRollUp() {
         goToElementsPage();
-        Assert.assertTrue(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we see rolldown menu when we click on the elements button
+        Assert.assertTrue(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we see roll-down menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowUp));                       //arrow is UP on the elements button
         elementsPage.clickOnElementsButton();
-        Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see rolldown menu when we click on the elements button
+        Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see roll-down menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowDown));                     //arrow is DOWN on the elements button
     }
 
@@ -54,7 +52,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 60)
     public void radioButtonCheck () {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Radio Button");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
         Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
     }
@@ -71,7 +69,7 @@ public class ElementsPageTest extends DemoQaBase {
 //        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("Impressive"));
 //    }
     @Test (priority = 80)
-    public void radioButtonNo () {
+    public void radioButtonNo () { // BITNO CSS VALUE SE VADI IZ INSPECT PA DOLE STYLES PA KURSOR PA VREDNOST
         radioButtonCheck ();
         String noClickPlace = elementsPage.noRadioButton.getCssValue("cursor");
         Assert.assertEquals(noClickPlace, "not-allowed");
@@ -80,7 +78,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 90)
     public void webTablesCheck () {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Web Tables");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Web Tables");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 95)
@@ -269,7 +267,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 140)
     public void buttonsCheck () {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Buttons");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Buttons");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 150)
@@ -296,7 +294,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 180)
     public void linksCheck () {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Links");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 190)
@@ -373,7 +371,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 280)
     public void brokenLinksCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Broken Links - Images");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 290)
@@ -393,7 +391,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 310)
     public void uploadAndDownloadCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Upload and Download");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 320)
@@ -414,7 +412,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 340)
     public void dynamicPropertiesCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Dynamic Properties");
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
 //    @Test (priority = 350)

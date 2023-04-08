@@ -64,10 +64,4 @@ public class FirstPage extends DemoQaBase {
             }
         }
     }
-
-    // Template za pretragu elemenata:
-// @FindBy(css = "tag[atribute = 'value']")
-// public WebElement element;
-
-
 }

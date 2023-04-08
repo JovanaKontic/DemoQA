@@ -14,13 +14,15 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class TextBoxTest extends DemoQaBase {
+    public String titleOfTheElementsPage = "Elements";
+    public String titleOfTheTextBoxPage = "Text Box";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get(homePageURL);                                                  //every test starts from the home page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
@@ -28,13 +30,13 @@ public class TextBoxTest extends DemoQaBase {
     public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
         firstPage.clickOnElementsCard();
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheElementsPage));
     }
     @Test(priority = 10)
     public void shouldGoToTextBoxPage() {                                           //test if the button works
         goToElementsPage();
-        elementsPage.clickOnElementsMenuButton("Text Box");
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Text Box"));
+        elementsPage.clickOnTheButtonFromTheElementsMenu(titleOfTheTextBoxPage);
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
     }
     @Test (priority = 20)
     public void shouldFailWithEmptyFields(){
