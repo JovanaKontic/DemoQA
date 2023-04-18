@@ -19,6 +19,7 @@ public class ElementsCheckBoxPage extends DemoQaBase {
     public  @FindBy (css ="span[class = 'rct-title']" ) List<WebElement> listOfCheckBoxes;
     public @FindBy(id = "result") WebElement result;
     public @FindBy (css = "span[class ='text-success']") List<WebElement> listOfTextResults;
+
 //    public @FindBy (css = "label[for = 'tree-node-downloads']") WebElement downloadsCheckBox;
 
 //    public @FindBy(xpath = "//*[@id=\"tree-node\"]/ol/li/ol/li[3]/span/label/span[1]/svg") WebElement downloadsCheckBoxHalfCheck;  //nije cobar lokator

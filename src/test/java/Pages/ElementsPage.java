@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class ElementsPage extends DemoQaBase {
-    public ElementsPage() { PageFactory.initElements(driver,this);
-    }
+    public ElementsPage() { PageFactory.initElements(driver,this); }
     public @FindBy(className ="header-text") List<WebElement> buttonsList;
     public @FindBy(css =".element-list.collapse.show") WebElement elementsRollDown;
     public @FindBy( className = "main-header") WebElement titlePage;
@@ -22,12 +21,12 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "currentAddress") WebElement currentAddressField;
     public @FindBy(id = "permanentAddress") WebElement permanentAddressField;
     public @FindBy(id = "output") WebElement outputMessageField;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public @FindBy(className = "mb-3") WebElement radioButtonText;
-    public @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[2]/label") WebElement yesRadioButton;
+    public @FindBy(className = "mb-3") WebElement radioButtonQuestionText;
+    public @FindBy(css="label[for='yesRadio']") WebElement yesRadioButton;
     public @FindBy(className = "mt-3") WebElement radioButtonMessage;
-    public @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/label") WebElement impressiveRadioButton;
+    public @FindBy(css="label[for='impressiveRadio']") WebElement impressiveRadioButton;
     public @FindBy(css = ".custom-control.disabled.custom-radio.custom-control-inline") WebElement noRadioButton;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public @FindBy(id = "addNewRecordButton") WebElement addWebTables;
     public @FindBy(className = "modal-content") WebElement registrationFormWebTables;

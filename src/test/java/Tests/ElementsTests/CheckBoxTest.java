@@ -10,9 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -55,7 +53,7 @@ public class CheckBoxTest extends DemoQaBase {
     @Test (priority = 40)
     public void shouldClickOnAllArrowsToExpandMenu() {
 //        https://www.guru99.com/scroll-up-down-selenium-webdriver.html
-        shouldGoToCheckBoxPage();           // expanding menu by clickin on arrows
+        shouldGoToCheckBoxPage();           // expanding menu by clicking on arrows
         for (int i = 0; i < checkBoxPage.arrowList.size(); i++) {
             checkBoxPage.arrowList.get(i).click();
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -87,18 +85,15 @@ public class CheckBoxTest extends DemoQaBase {
             Assert.assertFalse(IsDisplayed(checkBoxPage.result));
         }
     }
-    @Test (priority = 70)
-    public void shouldHaveHalfCheckMarkWhenClickOnOneChild () {
-        shouldClickOnPlusSign();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-        checkBoxPage.excelFileCheckBox.click();
-//    need assertion that downloadc is half check
-//        find a descendant locator
-    }
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    @Test (priority = 70)
+//    public void shouldHaveHalfCheckMarkWhenClickOnOneChild () {
+//        shouldClickOnPlusSign();
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+//        checkBoxPage.excelFileCheckBox.click();
+////    need assertion that downloads and home is half check
+////        find a descendant locator
+//    }
 
     @AfterMethod
     public void shutDownTest () {

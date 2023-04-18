@@ -49,31 +49,7 @@ public class ElementsPageTest extends DemoQaBase {
     }
 
 //    ==================================================================================================================
-    @Test (priority = 60)
-    public void radioButtonCheck () {
-        goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-        Assert.assertTrue(IsDisplayed(elementsPage.radioButtonText));
-    }
-//    @Test (priority = 65)                       PROVERI DA LI SU DOBRI WEB ELEMENTI, NOVA METODA U BASE
-//    public void radioButtonYes () {
-//        radioButtonCheck ();
-//        elementsPage.yesRadioButton.click();
-//        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("Yes"));
-//    }
-//    @Test (priority = 70)
-//    public void radioButtonImpressive () {
-//        radioButtonCheck ();
-//        elementsPage.impressiveRadioButton.click();
-//        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("Impressive"));
-//    }
-    @Test (priority = 80)
-    public void radioButtonNo () { // BITNO CSS VALUE SE VADI IZ INSPECT PA DOLE STYLES PA KURSOR PA VREDNOST
-        radioButtonCheck ();
-        String noClickPlace = elementsPage.noRadioButton.getCssValue("cursor");
-        Assert.assertEquals(noClickPlace, "not-allowed");
-    }
+
 //    ==================================================================================================================
     @Test (priority = 90)
     public void webTablesCheck () {

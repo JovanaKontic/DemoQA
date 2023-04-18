@@ -46,15 +46,15 @@ public class DemoQaBase {
         excelReader = new ExcelReader("src/test/java/TestDataDemoQA.xlsx");
         homePageURL = excelReader.getStringData("URL", 0, 1);
         elementsPageURL = excelReader.getStringData("URL", 1, 1);
-        formsPageURL = excelReader.getStringData("URL", 2, 1);
-        alertsPageURL = excelReader.getStringData("URL", 3, 1);
-        widgetsPageURL = excelReader.getStringData("URL", 4, 1);
-        interactionPageURL = excelReader.getStringData("URL", 5, 1);
-        bookStorePageURL = excelReader.getStringData("URL", 6, 1);
-        textBoxPageURL = excelReader.getStringData("URL", 7, 1);
-        brokenLinkURL = excelReader.getStringData("URL", 8, 1);
-        practiceFormURL = excelReader.getStringData("URL", 9, 1);
-        newTabAlertsURL = excelReader.getStringData("URL", 10, 1);
+//        formsPageURL = excelReader.getStringData("URL", 2, 1);
+//        alertsPageURL = excelReader.getStringData("URL", 3, 1);
+//        widgetsPageURL = excelReader.getStringData("URL", 4, 1);
+//        interactionPageURL = excelReader.getStringData("URL", 5, 1);
+//        bookStorePageURL = excelReader.getStringData("URL", 6, 1);
+//        textBoxPageURL = excelReader.getStringData("URL", 7, 1);
+//        brokenLinkURL = excelReader.getStringData("URL", 8, 1);
+//        practiceFormURL = excelReader.getStringData("URL", 9, 1);
+//        newTabAlertsURL = excelReader.getStringData("URL", 10, 1);
     }
     public void textBoxFieldsInputs (WebElement element, String string) {  //ZA UNOS TEXTA U TEX BOX
         element.clear();
@@ -111,7 +111,7 @@ public class DemoQaBase {
 //    JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     public void waitPageVisible (String url){
-        waiter.until(ExpectedConditions.urlToBe("url"));
+        waiter.until(ExpectedConditions.urlToBe(url));
     }
 //    @AfterClass
 //    public void shutDown () {
