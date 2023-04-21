@@ -29,34 +29,44 @@ public class RadioButtonTest extends DemoQaBase {
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
     }
     @Test(priority = 10)
-    public void shouldGoToRadioButtonPage()   {
+    public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
         goToElementsPage();
         elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Radio Button"));
     }
     @Test (priority = 20)
-    public void shouldHaveQuestionDisplayed() {
+    public void shouldHaveQuestionDisplayed() {     //is text displayed on the page,
         shouldGoToRadioButtonPage();
         Assert.assertTrue(elementsPage.radioButtonQuestionText.getText().equalsIgnoreCase("Do you like the site?"));
     }
     @Test (priority = 30)
-    public void shouldRadioButtonYesWork () {
+    public void shouldRadioButtonYesWork () {   //is YES clickable
         shouldGoToRadioButtonPage();
         elementsPage.yesRadioButton.click();
         Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Yes"));
     }
     @Test (priority = 40)
-    public void radioButtonImpressive () {
+    public void shouldRadioButtonImpressiveWork () {        //is impressive clickable
         shouldGoToRadioButtonPage();
         elementsPage.impressiveRadioButton.click();
         Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Impressive"));
     }
     @Test (priority = 50)
-    public void radioButtonNo () {
+    public void shouldRadioButtonNoWork() { // button NO is not working, becouse it is meant to not work
         // BITNO CSS VALUE SE VADI IZ INSPECT PA DOLE STYLES PA KURSOR PA VREDNOST
-        shouldHaveQuestionDisplayed();
+        shouldGoToRadioButtonPage();
         String noClickPlace = elementsPage.noRadioButton.getCssValue("cursor");
         Assert.assertEquals(noClickPlace, "not-allowed");
+    }
+    @Test (priority = 60)
+    public void shouldRadioButtonsWorkWhenChangingSelectionFlow() {    //doing a flow to see if the text changes and also if the buttons can be clicked after one another
+        shouldGoToRadioButtonPage();
+        elementsPage.yesRadioButton.click();
+        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Yes"));
+        elementsPage.impressiveRadioButton.click();
+        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Impressive"));
+        elementsPage.yesRadioButton.click();
+        Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Yes"));
     }
     @AfterMethod
     public void shutDownTest () {
