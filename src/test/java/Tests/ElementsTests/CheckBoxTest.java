@@ -98,7 +98,7 @@ public class CheckBoxTest extends DemoQaBase {
     }
     @AfterMethod
     public void shutDownTest () {
-//        driver.manage().deleteAllCookies();
-//        driver.close();
+        driver.manage().deleteAllCookies();
+        driver.close();
     }
 }
