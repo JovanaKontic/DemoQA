@@ -15,28 +15,29 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class CheckBoxTest extends DemoQaBase {
+    public String titleOfTheCheckBoxPage = "Check Box";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        driver.manage().window().maximize();
-        driver.get(homePageURL);                                                  //every test starts from the home page
+        driver.manage().window().maximize();
+        driver.get(elementsPageURL);                                                  //every test starts from the elements page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
         checkBoxPage = new ElementsCheckBoxPage();
     }
-    public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
-    }
     @Test(priority = 10)
     public void shouldGoToCheckBoxPage()   {
-        goToElementsPage();
         elementsPage.clickOnTheButtonFromTheElementsMenu("Check Box");
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Check Box"));
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheCheckBoxPage));
+    }
+    @Test(priority = 15)
+    public void shouldGoToHomePageByClickingLogoButton() {
+        shouldGoToCheckBoxPage();
+        firstPage.logoButton.click();                                               //when click on the logo return to the home page
+        Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 20)
     public void shouldClickOnPlusSign () {      //test if we can expand menu
@@ -51,9 +52,9 @@ public class CheckBoxTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(checkBoxPage.checkBoxMenuCollapsed));
     }
     @Test (priority = 40)
-    public void shouldClickOnAllArrowsToExpandMenu() {
+    public void shouldClickOnAllArrowsToExpandMenu() {          // expanding menu by clicking on arrows
 //        https://www.guru99.com/scroll-up-down-selenium-webdriver.html
-        shouldGoToCheckBoxPage();           // expanding menu by clicking on arrows
+        shouldGoToCheckBoxPage();
         for (int i = 0; i < checkBoxPage.arrowList.size(); i++) {
             checkBoxPage.arrowList.get(i).click();
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -63,8 +64,8 @@ public class CheckBoxTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(checkBoxPage.excelFileCheckBox));
     }
     @Test (priority = 50)
-    public void shouldClickOnAllArrowsToCollapseMenu() {
-        shouldClickOnAllArrowsToExpandMenu();               // assuming we expanded menu collapse it with arrows
+    public void shouldClickOnAllArrowsToCollapseMenu() {             // assuming we expanded menu collapse it with arrows
+        shouldClickOnAllArrowsToExpandMenu();
         int listSize= checkBoxPage.arrowList.size()-1;
         for (int j = listSize; j >= 0; j--) {
             checkBoxPage.arrowList.get(j).click();
@@ -94,7 +95,6 @@ public class CheckBoxTest extends DemoQaBase {
         checkBoxPage.excelFileCheckBox.click();
         Assert.assertTrue(checkBoxPage.result.getText().contains("You have selected :\n" + "excelFile"));
         Assert.assertTrue(IsDisplayed(checkBoxPage.downloadsCheckBoxHalfCheck));
-
     }
     @AfterMethod
     public void shutDownTest () {

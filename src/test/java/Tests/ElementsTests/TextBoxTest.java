@@ -12,7 +12,6 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class TextBoxTest extends DemoQaBase {
-    public String titleOfTheElementsPage = "Elements";
     public String titleOfTheTextBoxPage = "Text Box";
     @BeforeMethod
     public void setUpPage () {
@@ -21,20 +20,20 @@ public class TextBoxTest extends DemoQaBase {
         driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get(homePageURL);                                                  //every test starts from the home page
+        driver.get(elementsPageURL);                                                  //every test starts from the elements page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
     }
-    public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheElementsPage));
-    }
     @Test(priority = 10)
     public void shouldGoToTextBoxPage() {                                           //test if the button works
-        goToElementsPage();
         elementsPage.clickOnTheButtonFromTheElementsMenu(titleOfTheTextBoxPage);
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
+    }
+    @Test(priority = 15)
+    public void shouldGoToHomePageByClickingLogoButton() {
+        shouldGoToTextBoxPage();
+        firstPage.logoButton.click();                                               //when click on the logo return to the home page
+        Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 20)
     public void shouldFailWithEmptyFields(){

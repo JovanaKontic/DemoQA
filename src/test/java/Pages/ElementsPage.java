@@ -12,8 +12,8 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(className ="header-text") List<WebElement> buttonsList;
     public @FindBy(css =".element-list.collapse.show") WebElement elementsRollDown;
     public @FindBy( className = "main-header") WebElement titlePage;
-    public  @FindBy (css = "path[d = 'M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']") WebElement arrowUp;
-    public  @FindBy (css = "path[d = 'M3 19h18v2H3v-2zm10-5.828L19.071 7.1l1.414 1.414L12 17 3.515 8.515 4.929 7.1 11 13.17V2h2v11.172z']") WebElement arrowDown;
+    public  @FindBy (css = "path[d='M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']") WebElement arrowUp;
+    public  @FindBy (css = "path[d='M3 19h18v2H3v-2zm10-5.828L19.071 7.1l1.414 1.414L12 17 3.515 8.515 4.929 7.1 11 13.17V2h2v11.172z']") WebElement arrowDown;
     public @FindBy(className = "text") List<WebElement> elementsPageList;
     public @FindBy(id = "submit") WebElement submitButton;
     public @FindBy(id = "userName") WebElement fullNameField;
@@ -21,12 +21,12 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "currentAddress") WebElement currentAddressField;
     public @FindBy(id = "permanentAddress") WebElement permanentAddressField;
     public @FindBy(id = "output") WebElement outputMessageField;
+
     public @FindBy(className = "mb-3") WebElement radioButtonQuestionText;
     public @FindBy(css="label[for='yesRadio']") WebElement yesRadioButton;
     public @FindBy(className = "mt-3") WebElement radioButtonMessage;
     public @FindBy(css="label[for='impressiveRadio']") WebElement impressiveRadioButton;
     public @FindBy(css = ".custom-control.disabled.custom-radio.custom-control-inline") WebElement noRadioButton;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public @FindBy(id = "addNewRecordButton") WebElement addWebTables;
     public @FindBy(className = "modal-content") WebElement registrationFormWebTables;
@@ -37,6 +37,11 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "department") WebElement departmentWebTables;
     public @FindBy(id = "searchBox") WebElement searchBoxWebTables;
     public @FindBy(className = "rt-noData") WebElement noRowMessagaWebTables;
+    public @FindBy(css = ".mr-sm-2.form-control") List<WebElement> registrationFormTextBoxList;
+
+
+
+
     public @FindBy(className = "rt-tbody") List <WebElement> contentWebTable;
     public @FindBy(id = "edit-record-4") WebElement editButtonWebTables;
     public @FindBy(id = "delete-record-4") WebElement deleteButtonWebTable;
@@ -47,6 +52,7 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(css = "input[value = '2']") WebElement secondPageNumberWebTables;
     public @FindBy(className = "-previous") WebElement previousButtonWebTables;
     public @FindBy(css = "input[value = '1']") WebElement firstPageNumberWebTables;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public @FindBy(id = "doubleClickBtn") WebElement doubleClickButton;
     public @FindBy(id = "doubleClickMessage") WebElement doubleClickMessage;

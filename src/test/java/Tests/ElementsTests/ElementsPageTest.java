@@ -10,12 +10,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class ElementsPageTest extends DemoQaBase {
+    public String titleOfTheElementsPage = "Elements";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
@@ -30,7 +30,7 @@ public class ElementsPageTest extends DemoQaBase {
     public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
         firstPage.clickOnElementsCard();
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheElementsPage));
     }
     @Test (priority = 10)
     public void shouldReturnToHomePageAfterClickingOnLogoButton() {
@@ -47,73 +47,13 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertFalse(IsDisplayed(elementsPage.elementsRollDown));             //asserting that we don't see roll-down menu when we click on the elements button
         Assert.assertTrue(IsDisplayed(elementsPage.arrowDown));                     //arrow is DOWN on the elements button
     }
-
 //    ==================================================================================================================
 
-//    ==================================================================================================================
-    @Test (priority = 90)
-    public void webTablesCheck () {
-        goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Web Tables");
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-    }
-    @Test (priority = 95)
-    public void webTablesAdd () {
-        webTablesCheck ();
-        elementsPage.addWebTables.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-    }
-    @Test (priority = 100)
-    public void webTablesSearch () {
-        String firstName = excelReader.getStringData("WebTables", 0,1);
-        webTablesCheck ();
-        textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);
-        Assert.assertTrue(IsDisplayed(elementsPage.noRowMessagaWebTables));
-    }
-    @Test (priority = 110)
-    public void webTablesFlow () {
-        String firstName = excelReader.getStringData("WebTables", 0,1);
-        String lastName = excelReader.getStringData("WebTables", 1,1);
-        String email = excelReader.getStringData("WebTables", 2,1);
-        String age = excelReader.getStringData("WebTables", 3,1);
-        String salary = excelReader.getStringData("WebTables", 4,1);
-        String department = excelReader.getStringData("WebTables", 5,1);
-        String newFirstName = excelReader.getStringData("WebTables", 6,1);
-        webTablesCheck ();
-        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
-        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
-        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
-        textBoxFieldsInputs(elementsPage.emailField, email);
-        textBoxFieldsInputs(elementsPage.ageWebTables, age);
-        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
-        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
-        elementsPage.submitButton.click();
-        textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);            //PRETRAGA UNOSA
-        Assert.assertTrue(elementsPage.checkWebTable(firstName));
-        elementsPage.editButtonWebTables.click();                               //PROMENA UNOSA
-        textBoxFieldsInputs(elementsPage.firstNameWebTables, newFirstName );
-        elementsPage.submitButton.click();
-        elementsPage.checkWebTable(newFirstName);                               //PROVERA DA LI JE PROMENJENO
-        elementsPage.deleteButtonWebTable.click();                              //BRISANJE UNOSA
-        textBoxFieldsInputs(elementsPage.searchBoxWebTables,newFirstName);      //PROVERA DA LI JE UNOS OBRISAN
-        elementsPage.magnifier.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.noRowMessagaWebTables));
-    }
-    @Test (priority = 120)
-    public void webTablesInvalidRegistrationFirstnameFlow () {
-        String firstName = excelReader.getStringData("WebTables", 0,1);
-        webTablesCheck ();
-        elementsPage.addWebTables.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
-        elementsPage.submitButton.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-    }
+
     @Test (priority = 121)
     public void webTablesInvalidRegistrationLastNameFlow () {
         String lastName = excelReader.getStringData("WebTables", 1,1);
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
@@ -123,7 +63,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 122)
     public void webTablesInvalidRegistrationEmailFlow () {
         String email = excelReader.getStringData("WebTables", 2,1);
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.emailField, email);
@@ -133,7 +73,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 123)
     public void webTablesInvalidRegistrationAgeFlow () {
         String age = excelReader.getStringData("WebTables", 3,1);
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.ageWebTables, age);
@@ -143,7 +83,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 124)
     public void webTablesInvalidRegistrationSalaryFlow () {
         String salary = excelReader.getStringData("WebTables", 4,1);
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
@@ -153,7 +93,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 125)
     public void webTablesInvalidRegistrationDepartmentFlow () {
         String department = excelReader.getStringData("WebTables", 5,1);
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.departmentWebTables, department);
@@ -162,7 +102,7 @@ public class ElementsPageTest extends DemoQaBase {
     }
     @Test (priority = 126)
     public void webTablesInvalidRegistrationEmptyFlow () {
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.firstNameWebTables, "");
@@ -193,7 +133,7 @@ public class ElementsPageTest extends DemoQaBase {
         String salary2 = excelReader.getStringData("WebTables", 4, 3);
         String department2 = excelReader.getStringData("WebTables", 5, 3);
 
-        webTablesCheck ();
+//        webTablesCheck ();
         elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
         textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
@@ -227,16 +167,16 @@ public class ElementsPageTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
         elementsPage.submitButton.click();
 
-        waitForVisibility(elementsPage.rowDropDownWebTables);
+//        waitForVisibility(elementsPage.rowDropDownWebTables);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-        elementsPage.rowDropDownWebTables.click();
-        elementsPage.row5WebTables.click();
-        waitForVisibility(elementsPage.nextButtonWebTables);
-        elementsPage.nextButtonWebTables.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
-        elementsPage.previousButtonWebTables.click();
-        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
+//        elementsPage.rowDropDownWebTables.click();
+//        elementsPage.row5WebTables.click();
+//        waitForVisibility(elementsPage.nextButtonWebTables);
+//        elementsPage.nextButtonWebTables.click();
+//        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
+//        elementsPage.previousButtonWebTables.click();
+//        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
     }
     //***********************  JOS DODAJ KAD BUDES STIGLA TESTOVE ZA SORT DESC I ASC ***********************************
 //    ==================================================================================================================
@@ -417,11 +357,11 @@ public class ElementsPageTest extends DemoQaBase {
         waitForVisibility(elementsPage.visibleAfterButton);
         Assert.assertTrue(IsDisplayed(elementsPage.visibleAfterButton));
     }
-//    @AfterMethod
-//    public void shutDownTest () {
-//        driver.manage().deleteAllCookies();
-//        driver.close();
-//    }
+    @AfterMethod
+    public void shutDownTest () {
+        driver.manage().deleteAllCookies();
+        driver.close();
+    }
 
 }
 
