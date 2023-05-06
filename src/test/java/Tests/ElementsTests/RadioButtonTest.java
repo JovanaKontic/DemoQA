@@ -12,27 +12,29 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class RadioButtonTest extends DemoQaBase {
+    public String titleOfTheRadioButtonPage = "Radio Button";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        driver.manage().window().maximize();
-        driver.get(homePageURL);                                                  //every test starts from the home page
+        driver.manage().window().maximize();
+        driver.get(elementsPageURL);                                                  //every test starts from the elements page
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
     }
-    public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
-        Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Elements"));
-    }
+
     @Test(priority = 10)
     public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
-        goToElementsPage();
         elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
-        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains("Radio Button"));
+        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheRadioButtonPage));
+    }
+    @Test(priority = 15)
+    public void shouldGoToHomePageByClickingLogoButton() {
+        shouldGoToRadioButtonPage();
+        firstPage.logoButton.click();                                               //when click on the logo return to the home page
+        Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test (priority = 20)
     public void shouldHaveQuestionDisplayed() {     //is text displayed on the page,
