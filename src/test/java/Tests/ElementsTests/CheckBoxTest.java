@@ -15,7 +15,7 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class CheckBoxTest extends DemoQaBase {
-    public String titleOfTheCheckBoxPage = "Check Box";
+    String titleOfTheCheckBoxPage = "Check Box";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
@@ -32,6 +32,7 @@ public class CheckBoxTest extends DemoQaBase {
     public void shouldGoToCheckBoxPage()   {
         elementsPage.clickOnTheButtonFromTheElementsMenu("Check Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheCheckBoxPage));
+        Assert.assertEquals(driver.getCurrentUrl(),checkBoxPageURL);
     }
     @Test(priority = 15)
     public void shouldGoToHomePageByClickingLogoButton() {

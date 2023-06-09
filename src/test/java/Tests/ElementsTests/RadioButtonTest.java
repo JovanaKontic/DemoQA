@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class RadioButtonTest extends DemoQaBase {
-    public String titleOfTheRadioButtonPage = "Radio Button";
+    String titleOfTheRadioButtonPage = "Radio Button";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
@@ -29,6 +29,7 @@ public class RadioButtonTest extends DemoQaBase {
     public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
         elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheRadioButtonPage));
+        Assert.assertEquals(driver.getCurrentUrl(),radioButtonPageURL);
     }
     @Test(priority = 15)
     public void shouldGoToHomePageByClickingLogoButton() {

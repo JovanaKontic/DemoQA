@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
@@ -27,9 +26,13 @@ public class DemoQaBase {
     public String interactionPageURL;
     public String bookStorePageURL;
     public String textBoxPageURL;
+    public String checkBoxPageURL;
+    public String radioButtonPageURL;
+    public String webTableURL;
     public String brokenLinkURL;
     public String practiceFormURL;
     public String newTabAlertsURL;
+
 
     public FirstPage firstPage;
     public ElementsPage elementsPage;
@@ -46,6 +49,10 @@ public class DemoQaBase {
         excelReader = new ExcelReader("src/test/java/TestDataDemoQA.xlsx");
         homePageURL = excelReader.getStringData("URL", 0, 1);
         elementsPageURL = excelReader.getStringData("URL", 1, 1);
+        textBoxPageURL = excelReader.getStringData("URL", 13, 1);
+        checkBoxPageURL = excelReader.getStringData("URL", 12, 1);
+        radioButtonPageURL = excelReader.getStringData("URL", 14, 1);
+        webTableURL = excelReader.getStringData("URL", 11, 1);
 //        formsPageURL = excelReader.getStringData("URL", 2, 1);
 //        alertsPageURL = excelReader.getStringData("URL", 3, 1);
 //        widgetsPageURL = excelReader.getStringData("URL", 4, 1);
@@ -96,6 +103,8 @@ public class DemoQaBase {
     public void waitForVisibility(WebElement element) {
         waiter.until(ExpectedConditions.visibilityOf(element));
     }
+    public void waitForInvisibility(WebElement element) { waiter.until(ExpectedConditions.invisibilityOf(element));}
+
 
     public void waitForClickability(WebElement element) {
         waiter.until(ExpectedConditions.elementToBeClickable(element));
