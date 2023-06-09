@@ -29,6 +29,7 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(css = ".custom-control.disabled.custom-radio.custom-control-inline") WebElement noRadioButton;
 
     public @FindBy(id = "addNewRecordButton") WebElement addWebTables;
+    public @FindBy(className = "close") WebElement closeButtonOnRegistrationForm;
     public @FindBy(className = "modal-content") WebElement registrationFormWebTables;
     public @FindBy(id = "firstName") WebElement firstNameWebTables;
     public @FindBy(id = "lastName") WebElement lastNameWebTables;
@@ -36,18 +37,24 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "salary") WebElement salaryWebTables;
     public @FindBy(id = "department") WebElement departmentWebTables;
     public @FindBy(id = "searchBox") WebElement searchBoxWebTables;
-    public @FindBy(className = "rt-noData") WebElement noRowMessagaWebTables;
-    public @FindBy(css = ".mr-sm-2.form-control") List<WebElement> registrationFormTextBoxList;
+    public @FindBy(className = "rt-noData") WebElement noRowMessageWebTables;
+    public @FindBy(css = ".mr-sm-2.form-control") List<WebElement> registrationTextFieldsList;
+    public @FindBy(id = "edit-record-1") WebElement editButton;
+    public @FindBy(id = "delete-record-1") WebElement deleteButton;
+    public @FindBy(className = "rt-tbody") List <WebElement> wholeWebTable;
+    public @FindBy(css = ".select-wrap.-pageSizeOptions") WebElement rowDropDownWebTables;
+    public @FindBy(css = "option[value ='5']") WebElement row5WebTables;
 
 
 
 
-    public @FindBy(className = "rt-tbody") List <WebElement> contentWebTable;
+
+
+
     public @FindBy(id = "edit-record-4") WebElement editButtonWebTables;
     public @FindBy(id = "delete-record-4") WebElement deleteButtonWebTable;
     public @FindBy(className = "input-group-append") WebElement magnifier;
-    public @FindBy(css = "option[value ='5']") WebElement row5WebTables;
-    public @FindBy(css = ".select-wrap.-pageSizeOptions") WebElement rowDropDownWebTables;
+
     public @FindBy(className = "-next") WebElement nextButtonWebTables;
     public @FindBy(css = "input[value = '2']") WebElement secondPageNumberWebTables;
     public @FindBy(className = "-previous") WebElement previousButtonWebTables;
@@ -100,16 +107,19 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public boolean checkWebTable(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
-        for (int i = 0; i < contentWebTable.size(); i++) {
-            if (contentWebTable.get(i).getText().contains(string)) {
-                contentWebTable.get(i).click();
+        for (int i = 0; i < wholeWebTable.size(); i++) {
+            if (wholeWebTable.get(i).getText().contains(string)) {
+                wholeWebTable.get(i).click();
                 return true;
             }
         }
         return false;
     }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void clickOnJustClick() {                                            //ZA JUST CLICK
         for (int i = 0; i < justClickButton.size(); i++) {
             if (justClickButton.get(i).getText().equals("Click Me")) {

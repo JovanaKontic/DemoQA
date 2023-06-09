@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class TextBoxTest extends DemoQaBase {
-    public String titleOfTheTextBoxPage = "Text Box";
+    String titleOfTheTextBoxPage = "Text Box";
     @BeforeMethod
     public void setUpPage () {
         ChromeOptions options = new ChromeOptions();
@@ -26,8 +26,10 @@ public class TextBoxTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToTextBoxPage() {                                           //test if the button works
-        elementsPage.clickOnTheButtonFromTheElementsMenu(titleOfTheTextBoxPage);
+        elementsPage.clickOnTheButtonFromTheElementsMenu("Text Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
+        Assert.assertEquals(driver.getCurrentUrl(),textBoxPageURL);
+
     }
     @Test(priority = 15)
     public void shouldGoToHomePageByClickingLogoButton() {
