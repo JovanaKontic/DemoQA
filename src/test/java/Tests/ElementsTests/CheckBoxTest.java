@@ -82,6 +82,7 @@ public class CheckBoxTest extends DemoQaBase {
             Assert.assertTrue(checkBoxPage.result.getText().contains("You have selected :"));
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+            //making it ignore case letters and to delete whitespace so that titles match for all
             Assert.assertTrue(StringUtils.containsAnyIgnoreCase(StringUtils.deleteWhitespace(checkBoxPage.listOfCheckBoxes.get(i).getText()),
                     checkBoxPage.listOfTextResults.get(0).getText())); // asserting that all the checkboxes are listed in the resulting text
             checkBoxPage.listOfCheckBoxes.get(i).click();
@@ -95,7 +96,7 @@ public class CheckBoxTest extends DemoQaBase {
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
         checkBoxPage.excelFileCheckBox.click();
         Assert.assertTrue(checkBoxPage.result.getText().contains("You have selected :\n" + "excelFile"));
-        Assert.assertTrue(IsDisplayed(checkBoxPage.downloadsCheckBoxHalfCheck));
+        Assert.assertTrue(IsDisplayed(checkBoxPage.downloadsCheckBoxHalfCheck)); // made my own xpath
     }
     @AfterMethod
     public void shutDownTest () {

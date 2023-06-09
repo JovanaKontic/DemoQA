@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -122,11 +122,10 @@ public class DemoQaBase {
     public void waitPageVisible (String url){
         waiter.until(ExpectedConditions.urlToBe(url));
     }
-//    @AfterClass
-//    public void shutDown () {
-//        driver.quit();
-//    }
-
+    @AfterClass
+    public void shutDown () {
+        driver.quit();
+    }
 }
 
 
