@@ -29,7 +29,6 @@ public class TextBoxTest extends DemoQaBase {
         elementsPage.clickOnTheButtonFromTheElementsMenu("Text Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
         Assert.assertEquals(driver.getCurrentUrl(),textBoxPageURL);
-
     }
     @Test(priority = 15)
     public void shouldGoToHomePageByClickingLogoButton() {

@@ -24,7 +24,6 @@ public class RadioButtonTest extends DemoQaBase {
         firstPage = new FirstPage();
         elementsPage = new ElementsPage();
     }
-
     @Test(priority = 10)
     public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
         elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
@@ -47,12 +46,14 @@ public class RadioButtonTest extends DemoQaBase {
         shouldGoToRadioButtonPage();
         elementsPage.yesRadioButton.click();
         Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Yes"));
+        Assert.assertFalse(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Impressive"));
     }
     @Test (priority = 40)
     public void shouldRadioButtonImpressiveWork () {        //is impressive clickable
         shouldGoToRadioButtonPage();
         elementsPage.impressiveRadioButton.click();
         Assert.assertTrue(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Impressive"));
+        Assert.assertFalse(elementsPage.getTextFromWebElement(elementsPage.radioButtonMessage).contains("You have selected Yes"));
     }
     @Test (priority = 50)
     public void shouldRadioButtonNoWork() { // button NO is not working, becouse it is meant to not work
@@ -76,5 +77,4 @@ public class RadioButtonTest extends DemoQaBase {
         driver.manage().deleteAllCookies();
         driver.close();
     }
-
 }
