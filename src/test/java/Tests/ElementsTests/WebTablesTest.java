@@ -230,25 +230,8 @@ public class WebTablesTest extends DemoQaBase {
         elementsPage.magnifier.click();
         Assert.assertTrue(IsDisplayed(elementsPage.noRowMessageWebTables));
     }
-
-
-
-
-
-    //flow za next - dodaj 2 unosa + promeni na 5row...
-    //flow za prev
-//provera  za stranicu 2 - dodaj 3 unosa + promeni na 5 row ...
-    //asc
-    //desc
-
-
-
-
-
-
-
-    @Test (priority = 0)
-    public void webTablesAdd3AccountsFlow () {
+    @Test (priority = 160)
+    public void webTablesAdd3AccountsFlow () throws InterruptedException {
 // Creating 3 new accounts so that we can check if the next and previous buttons works
         String firstName = excelReader.getStringData("WebTables", 0, 1);
         String lastName = excelReader.getStringData("WebTables", 1, 1);
@@ -303,19 +286,37 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
         elementsPage.submitButton.click();
 
-        waitForClickability( elementsPage.addWebTables);
-
         waitForVisibility(elementsPage.rowDropDownWebTables);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-//        elementsPage.rowDropDownWebTables.click();
-//        elementsPage.row5WebTables.click();
-//        waitForVisibility(elementsPage.nextButtonWebTables);
-//        elementsPage.nextButtonWebTables.click();
-//        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
-//        elementsPage.previousButtonWebTables.click();
-//        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
+        elementsPage.rowDropDownWebTables.click();
+        elementsPage.row5WebTables.click();
+        waitForVisibility(elementsPage.nextButtonWebTables);
+        elementsPage.nextButtonWebTables.click();
+        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
+        Thread.sleep(3000);
+        elementsPage.previousButtonWebTables.click();
+        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
     }
+
+
+
+/*
+provera  za stranicu 2 - dodaj 3 unosa + promeni na 5 row ...
+    asc
+    desc
+    test za promenu na 5 row  pa ubaci u flow
+ */
+
+
+
+
+
+
+
+
+
+
     //***********************  JOS DODAJ KAD BUDES STIGLA TESTOVE ZA SORT DESC I ASC ***********************************
     @AfterMethod
     public void shutDownTest () {
