@@ -150,20 +150,20 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);
         Assert.assertTrue(IsDisplayed(elementsPage.noRowMessageWebTables)); //"No rows found" MESSAGE
     }
-    @Test (priority = 00)
+    @Test (priority = 100)
     public void shouldVerifyThatSearchBoxWorkWithValidData () {
         String name = "Cierra";
         shouldGoToWebTablesPage ();
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,name);
         Assert.assertTrue(elementsPage.checkWebTable(name));
     }
-    @Test(priority = 00)
+    @Test(priority = 110)
     public void shouldClickOnEditButton() {    //checking edit buttons
         shouldGoToWebTablesPage ();
         elementsPage.editButton.click();
         Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
     }
-    @Test(priority = 0)
+    @Test(priority = 120)
     public void shouldEditFields () {
         String firstName = excelReader.getStringData("WebTables", 0, 1);
         String lastName = excelReader.getStringData("WebTables", 1, 1);
@@ -183,14 +183,14 @@ public class WebTablesTest extends DemoQaBase {
         Assert.assertFalse(IsDisplayed(elementsPage.registrationFormWebTables));
         Assert.assertTrue(elementsPage.checkWebTable(email));
     }
-    @Test(priority = 0)
+    @Test(priority = 130)
     public void shouldDeleteFromTable() {
         String name = "Cierra";
         shouldGoToWebTablesPage ();
         elementsPage.deleteButton.click();
         Assert.assertFalse(elementsPage.checkWebTable(name));
     }
-    @Test(priority = 0)
+    @Test(priority = 140)
     public void shouldChangeRowNumbersDisplayed() {
         String rowNumber = "5 rows";
         shouldGoToWebTablesPage ();
@@ -199,18 +199,38 @@ public class WebTablesTest extends DemoQaBase {
         Assert.assertTrue(getTextFromWebElement(elementsPage.rowDropDownWebTables).contains(rowNumber));
         //assert da  "wholeWebTable"  ima velicinu 5
     }
+    @Test (priority = 150)
+    public void webTablesFlow () {
+        // input VALID data, search through accounts to find the one we made, change the account data,
+        // check if the change took, erasing account, check if the account is erased
+        // magnifier button doesn't work ???
+        String firstName = excelReader.getStringData("WebTables", 0,1);
+        String lastName = excelReader.getStringData("WebTables", 1,1);
+        String email = excelReader.getStringData("WebTables", 2,1);
+        String age = excelReader.getStringData("WebTables", 3,1);
+        String salary = excelReader.getStringData("WebTables", 4,1);
+        String department = excelReader.getStringData("WebTables", 5,1);
+        String newFirstName = excelReader.getStringData("WebTables", 6,1);
+        shouldClickOnAddButton();                                           //POCETAK DODAVANJA NALOGA
+        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
+        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
+        textBoxFieldsInputs(elementsPage.emailField, email);
+        textBoxFieldsInputs(elementsPage.ageWebTables, age);
+        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
+        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
+        elementsPage.submitButton.click();
+        textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);            //PRETRAGA UNOSA
+        Assert.assertTrue(elementsPage.checkWebTable(firstName));
+        elementsPage.editButtonWebTables.click();                               //PROMENA UNOSA
+        textBoxFieldsInputs(elementsPage.firstNameWebTables, newFirstName );
+        elementsPage.submitButton.click();
+        elementsPage.checkWebTable(newFirstName);                               //PROVERA DA LI JE PROMENJENO
+        elementsPage.deleteButtonWebTable.click();                              //BRISANJE UNOSA
+        textBoxFieldsInputs(elementsPage.searchBoxWebTables,newFirstName);      //PROVERA DA LI JE UNOS OBRISAN
+        elementsPage.magnifier.click();
+        Assert.assertTrue(IsDisplayed(elementsPage.noRowMessageWebTables));
+    }
 
-
-
-
-
-//    @Test(priority = 10)
-//    public void shouldGoToWebTablesPage() {                     //going to web tables page
-//        elementsPage.clickOnTheButtonFromTheElementsMenu("Web Tables");
-//        Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheWebTablesPage));
-//        Assert.assertEquals(driver.getCurrentUrl(),webTableURL);
-//    }
-//
 
 
 
@@ -226,110 +246,80 @@ public class WebTablesTest extends DemoQaBase {
 
 
 
-//    @Test (priority = 0)
-//    public void webTablesFlow () {
-//        // input VALID data, search through accounts to find the one we made, change the account data,
-//        // check if the change took, erasing account, check if the account is erased
-//        // magnifier button doesn't work ???
-//        String firstName = excelReader.getStringData("WebTables", 0,1);
-//        String lastName = excelReader.getStringData("WebTables", 1,1);
-//        String email = excelReader.getStringData("WebTables", 2,1);
-//        String age = excelReader.getStringData("WebTables", 3,1);
-//        String salary = excelReader.getStringData("WebTables", 4,1);
-//        String department = excelReader.getStringData("WebTables", 5,1);
-//        String newFirstName = excelReader.getStringData("WebTables", 6,1);
-//        shouldClickOnAddButton();                                           //POCETAK DODAVANJA NALOGA
-//        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
-//        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
-//        textBoxFieldsInputs(elementsPage.emailField, email);
-//        textBoxFieldsInputs(elementsPage.ageWebTables, age);
-//        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
-//        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
-//        elementsPage.submitButton.click();
-//        textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);            //PRETRAGA UNOSA
-//        Assert.assertTrue(elementsPage.checkWebTable(firstName));
-//        elementsPage.editButtonWebTables.click();                               //PROMENA UNOSA
-//        textBoxFieldsInputs(elementsPage.firstNameWebTables, newFirstName );
-//        elementsPage.submitButton.click();
-//        elementsPage.checkWebTable(newFirstName);                               //PROVERA DA LI JE PROMENJENO
-//        elementsPage.deleteButtonWebTable.click();                              //BRISANJE UNOSA
-//        textBoxFieldsInputs(elementsPage.searchBoxWebTables,newFirstName);      //PROVERA DA LI JE UNOS OBRISAN
-//        elementsPage.magnifier.click();
-//        Assert.assertTrue(IsDisplayed(elementsPage.noRowMessageWebTables));
-//    }
-//    @Test (priority = 0)
-//    public void webTablesAdd3AccountsFlow () {
-//// Creating 3 new accounts so that we can check if the next and previous buttons works
-//        String firstName = excelReader.getStringData("WebTables", 0, 1);
-//        String lastName = excelReader.getStringData("WebTables", 1, 1);
-//        String email = excelReader.getStringData("WebTables", 2, 1);
-//        String age = excelReader.getStringData("WebTables", 3, 1);
-//        String salary = excelReader.getStringData("WebTables", 4, 1);
-//        String department = excelReader.getStringData("WebTables", 5, 1);
-//
-//        String firstName1 = excelReader.getStringData("WebTables", 0, 2);
-//        String lastName1 = excelReader.getStringData("WebTables", 1, 2);
-//        String email1 = excelReader.getStringData("WebTables", 2, 2);
-//        String age1 = excelReader.getStringData("WebTables", 3, 2);
-//        String salary1 = excelReader.getStringData("WebTables", 4, 2);
-//        String department1 = excelReader.getStringData("WebTables", 5, 2);
-//
-//        String firstName2 = excelReader.getStringData("WebTables", 0, 3);
-//        String lastName2 = excelReader.getStringData("WebTables", 1, 3);
-//        String email2 = excelReader.getStringData("WebTables", 2, 3);
-//        String age2 = excelReader.getStringData("WebTables", 3, 3);
-//        String salary2 = excelReader.getStringData("WebTables", 4, 3);
-//        String department2 = excelReader.getStringData("WebTables", 5, 3);
-//
-////        webTablesCheck ();
-//        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
-//        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-//        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
-//        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
-//        textBoxFieldsInputs(elementsPage.emailField, email);
-//        textBoxFieldsInputs(elementsPage.ageWebTables, age);
-//        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
-//        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
-//        elementsPage.submitButton.click();
-//
-//        waitForVisibility( elementsPage.addWebTables);
-//        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
-//        waitForVisibility(elementsPage.registrationFormWebTables);
-//        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-//        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName1);
-//        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName1);
-//        textBoxFieldsInputs(elementsPage.emailField, email1);
-//        textBoxFieldsInputs(elementsPage.ageWebTables, age1);
-//        textBoxFieldsInputs(elementsPage.salaryWebTables, salary1);
-//        textBoxFieldsInputs(elementsPage.departmentWebTables, department1);
-//        elementsPage.submitButton.click();
-//
-//        waitForVisibility( elementsPage.addWebTables);
-//        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
-//        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
-//        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName2);
-//        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName2);
-//        textBoxFieldsInputs(elementsPage.emailField, email2);
-//        textBoxFieldsInputs(elementsPage.ageWebTables, age2);
-//        textBoxFieldsInputs(elementsPage.salaryWebTables, salary2);
-//        textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
-//        elementsPage.submitButton.click();
-//
-////        waitForVisibility(elementsPage.rowDropDownWebTables);
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-////        elementsPage.rowDropDownWebTables.click();
-////        elementsPage.row5WebTables.click();
-////        waitForVisibility(elementsPage.nextButtonWebTables);
-////        elementsPage.nextButtonWebTables.click();
-////        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
-////        elementsPage.previousButtonWebTables.click();
-////        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
-//    }
+
+    @Test (priority = 0)
+    public void webTablesAdd3AccountsFlow () {
+// Creating 3 new accounts so that we can check if the next and previous buttons works
+        String firstName = excelReader.getStringData("WebTables", 0, 1);
+        String lastName = excelReader.getStringData("WebTables", 1, 1);
+        String email = excelReader.getStringData("WebTables", 2, 1);
+        String age = excelReader.getStringData("WebTables", 3, 1);
+        String salary = excelReader.getStringData("WebTables", 4, 1);
+        String department = excelReader.getStringData("WebTables", 5, 1);
+
+        String firstName1 = excelReader.getStringData("WebTables", 0, 2);
+        String lastName1 = excelReader.getStringData("WebTables", 1, 2);
+        String email1 = excelReader.getStringData("WebTables", 2, 2);
+        String age1 = excelReader.getStringData("WebTables", 3, 2);
+        String salary1 = excelReader.getStringData("WebTables", 4, 2);
+        String department1 = excelReader.getStringData("WebTables", 5, 2);
+
+        String firstName2 = excelReader.getStringData("WebTables", 0, 3);
+        String lastName2 = excelReader.getStringData("WebTables", 1, 3);
+        String email2 = excelReader.getStringData("WebTables", 2, 3);
+        String age2 = excelReader.getStringData("WebTables", 3, 3);
+        String salary2 = excelReader.getStringData("WebTables", 4, 3);
+        String department2 = excelReader.getStringData("WebTables", 5, 3);
+
+        shouldClickOnAddButton();                                        //DODAJEMO NOVI UNOS
+        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
+        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
+        textBoxFieldsInputs(elementsPage.emailField, email);
+        textBoxFieldsInputs(elementsPage.ageWebTables, age);
+        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
+        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
+        elementsPage.submitButton.click();
+
+        waitForClickability( elementsPage.addWebTables);
+        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
+        waitForVisibility(elementsPage.registrationFormWebTables);
+        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
+        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName1);
+        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName1);
+        textBoxFieldsInputs(elementsPage.emailField, email1);
+        textBoxFieldsInputs(elementsPage.ageWebTables, age1);
+        textBoxFieldsInputs(elementsPage.salaryWebTables, salary1);
+        textBoxFieldsInputs(elementsPage.departmentWebTables, department1);
+        elementsPage.submitButton.click();
+
+        waitForClickability( elementsPage.addWebTables);
+        elementsPage.addWebTables.click();                                      //DODAJEMO NOVI UNOS
+        Assert.assertTrue(IsDisplayed(elementsPage.registrationFormWebTables));
+        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName2);
+        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName2);
+        textBoxFieldsInputs(elementsPage.emailField, email2);
+        textBoxFieldsInputs(elementsPage.ageWebTables, age2);
+        textBoxFieldsInputs(elementsPage.salaryWebTables, salary2);
+        textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
+        elementsPage.submitButton.click();
+
+        waitForClickability( elementsPage.addWebTables);
+
+        waitForVisibility(elementsPage.rowDropDownWebTables);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+//        elementsPage.rowDropDownWebTables.click();
+//        elementsPage.row5WebTables.click();
+//        waitForVisibility(elementsPage.nextButtonWebTables);
+//        elementsPage.nextButtonWebTables.click();
+//        Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
+//        elementsPage.previousButtonWebTables.click();
+//        Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
+    }
     //***********************  JOS DODAJ KAD BUDES STIGLA TESTOVE ZA SORT DESC I ASC ***********************************
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 }

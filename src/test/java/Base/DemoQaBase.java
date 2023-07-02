@@ -124,7 +124,7 @@ public class DemoQaBase {
     }
     @AfterClass
     public void shutDown () {
-        driver.quit();
+//        driver.quit();
     }
 }
 
