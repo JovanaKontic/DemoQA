@@ -165,19 +165,9 @@ public class WebTablesTest extends DemoQaBase {
     }
     @Test(priority = 120)
     public void shouldEditFields () {
-        String firstName = excelReader.getStringData("WebTables", 0, 1);
-        String lastName = excelReader.getStringData("WebTables", 1, 1);
         String email = excelReader.getStringData("WebTables", 2, 1);
-        String age = excelReader.getStringData("WebTables", 3, 1);
-        String salary = excelReader.getStringData("WebTables", 4, 1);
-        String department = excelReader.getStringData("WebTables", 5, 1);
         shouldClickOnEditButton();
-        textBoxFieldsInputs(elementsPage.firstNameWebTables, firstName);
-        textBoxFieldsInputs(elementsPage.lastNameWebTables, lastName);
         textBoxFieldsInputs(elementsPage.emailField, email);
-        textBoxFieldsInputs(elementsPage.ageWebTables, age);
-        textBoxFieldsInputs(elementsPage.salaryWebTables, salary);
-        textBoxFieldsInputs(elementsPage.departmentWebTables, department);
         elementsPage.submitButton.click();
         waitForInvisibility(elementsPage.registrationFormWebTables);
         Assert.assertFalse(IsDisplayed(elementsPage.registrationFormWebTables));
@@ -229,9 +219,12 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,newFirstName);      //PROVERA DA LI JE UNOS OBRISAN
         elementsPage.magnifier.click();
         Assert.assertTrue(IsDisplayed(elementsPage.noRowMessageWebTables));
+        /*
+        ne postoji nalog zato sto je obrisan
+         */
     }
     @Test (priority = 160)
-    public void webTablesAdd3AccountsFlow () throws InterruptedException {
+    public void webTablesAdd3Accounts ()  {
 // Creating 3 new accounts so that we can check if the next and previous buttons works
         String firstName = excelReader.getStringData("WebTables", 0, 1);
         String lastName = excelReader.getStringData("WebTables", 1, 1);
@@ -285,7 +278,13 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.salaryWebTables, salary2);
         textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
         elementsPage.submitButton.click();
-
+        /*
+        asertacije za da smo dodali naloge
+         */
+    }
+        @Test (priority = 170)
+        public void shouldClickOnNextButton()  {
+        webTablesAdd3Accounts ();
         waitForVisibility(elementsPage.rowDropDownWebTables);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -294,7 +293,11 @@ public class WebTablesTest extends DemoQaBase {
         waitForVisibility(elementsPage.nextButtonWebTables);
         elementsPage.nextButtonWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.secondPageNumberWebTables));
-        Thread.sleep(3000);
+
+    }
+    @Test (priority = 180)
+    public void shouldClickOnPreviousButton()  {
+        shouldClickOnNextButton();
         elementsPage.previousButtonWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
     }
@@ -302,10 +305,8 @@ public class WebTablesTest extends DemoQaBase {
 
 
 /*
-provera  za stranicu 2 - dodaj 3 unosa + promeni na 5 row ...
     asc
     desc
-    test za promenu na 5 row  pa ubaci u flow
  */
 
 
