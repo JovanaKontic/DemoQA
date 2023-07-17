@@ -107,7 +107,7 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    public boolean checkWebTable(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
+    public boolean checkInWebTableIfStringIsPresent(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
         for (int i = 0; i < wholeWebTable.size(); i++) {
             if (wholeWebTable.get(i).getText().contains(string)) {
                 wholeWebTable.get(i).click();

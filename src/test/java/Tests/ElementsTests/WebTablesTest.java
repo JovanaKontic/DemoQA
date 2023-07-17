@@ -73,7 +73,7 @@ public class WebTablesTest extends DemoQaBase {
         elementsPage.submitButton.click();
         waitForInvisibility(elementsPage.registrationFormWebTables);
         Assert.assertFalse(IsDisplayed(elementsPage.registrationFormWebTables));
-        Assert.assertTrue(elementsPage.checkWebTable(email));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(email));
     }
     @Test (priority = 50)
     public void shouldVerifyThatCantSubmitEmptyForm() {                 //cant submit empty form
@@ -155,7 +155,7 @@ public class WebTablesTest extends DemoQaBase {
         String name = "Cierra";
         shouldGoToWebTablesPage ();
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,name);
-        Assert.assertTrue(elementsPage.checkWebTable(name));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(name));
     }
     @Test(priority = 110)
     public void shouldClickOnEditButton() {    //checking edit buttons
@@ -171,19 +171,21 @@ public class WebTablesTest extends DemoQaBase {
         elementsPage.submitButton.click();
         waitForInvisibility(elementsPage.registrationFormWebTables);
         Assert.assertFalse(IsDisplayed(elementsPage.registrationFormWebTables));
-        Assert.assertTrue(elementsPage.checkWebTable(email));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(email));
     }
     @Test(priority = 130)
     public void shouldDeleteFromTable() {
         String name = "Cierra";
         shouldGoToWebTablesPage ();
         elementsPage.deleteButton.click();
-        Assert.assertFalse(elementsPage.checkWebTable(name));
+        Assert.assertFalse(elementsPage.checkInWebTableIfStringIsPresent(name));
     }
     @Test(priority = 140)
     public void shouldChangeRowNumbersDisplayed() {
         String rowNumber = "5 rows";
         shouldGoToWebTablesPage ();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         elementsPage.rowDropDownWebTables.click();
         elementsPage.row5WebTables.click();
         Assert.assertTrue(getTextFromWebElement(elementsPage.rowDropDownWebTables).contains(rowNumber));
@@ -210,11 +212,11 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.departmentWebTables, department);
         elementsPage.submitButton.click();
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,firstName);            //PRETRAGA UNOSA
-        Assert.assertTrue(elementsPage.checkWebTable(firstName));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(firstName));
         elementsPage.editButtonWebTables.click();                               //PROMENA UNOSA
         textBoxFieldsInputs(elementsPage.firstNameWebTables, newFirstName );
         elementsPage.submitButton.click();
-        elementsPage.checkWebTable(newFirstName);                               //PROVERA DA LI JE PROMENJENO
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(newFirstName));                               //PROVERA DA LI JE PROMENJENO
         elementsPage.deleteButtonWebTable.click();                              //BRISANJE UNOSA
         textBoxFieldsInputs(elementsPage.searchBoxWebTables,newFirstName);      //PROVERA DA LI JE UNOS OBRISAN
         elementsPage.magnifier.click();
@@ -225,7 +227,7 @@ public class WebTablesTest extends DemoQaBase {
     }
     @Test (priority = 160)
     public void webTablesAdd3Accounts ()  {
-// Creating 3 new accounts so that we can check if the next and previous buttons works
+// Checking if we can create 3 new accounts so that we can check if the next and previous buttons work latter
         String firstName = excelReader.getStringData("WebTables", 0, 1);
         String lastName = excelReader.getStringData("WebTables", 1, 1);
         String email = excelReader.getStringData("WebTables", 2, 1);
@@ -279,13 +281,15 @@ public class WebTablesTest extends DemoQaBase {
         textBoxFieldsInputs(elementsPage.departmentWebTables, department2);
         elementsPage.submitButton.click();
         /*
-        asertacije za da smo dodali naloge
+        asserting if all 3 accounts are present
          */
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(firstName));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(firstName1));
+        Assert.assertTrue(elementsPage.checkInWebTableIfStringIsPresent(firstName2));
     }
         @Test (priority = 170)
         public void shouldClickOnNextButton()  {
         webTablesAdd3Accounts ();
-        waitForVisibility(elementsPage.rowDropDownWebTables);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         elementsPage.rowDropDownWebTables.click();
@@ -307,18 +311,12 @@ public class WebTablesTest extends DemoQaBase {
 /*
     asc
     desc
+    FN
+    (rt-th rt-resizable-header -sort-asc -cursor-pointer
+    rt-th rt-resizable-header -sort-desc -cursor-pointer)
  */
 
 
-
-
-
-
-
-
-
-
-    //***********************  JOS DODAJ KAD BUDES STIGLA TESTOVE ZA SORT DESC I ASC ***********************************
     @AfterMethod
     public void shutDownTest () {
 //        driver.manage().deleteAllCookies();
