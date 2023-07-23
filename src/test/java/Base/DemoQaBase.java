@@ -32,6 +32,7 @@ public class DemoQaBase {
     public String brokenLinkURL;
     public String practiceFormURL;
     public String newTabAlertsURL;
+    public String buttonsPageURL;
 
 
     public FirstPage firstPage;
@@ -53,6 +54,7 @@ public class DemoQaBase {
         checkBoxPageURL = excelReader.getStringData("URL", 12, 1);
         radioButtonPageURL = excelReader.getStringData("URL", 13, 1);
         webTableURL = excelReader.getStringData("URL", 11, 1);
+        buttonsPageURL = excelReader.getStringData("URL",14,1);
 //        formsPageURL = excelReader.getStringData("URL", 2, 1);
 //        alertsPageURL = excelReader.getStringData("URL", 3, 1);
 //        widgetsPageURL = excelReader.getStringData("URL", 4, 1);

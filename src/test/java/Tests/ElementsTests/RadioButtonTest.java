@@ -31,7 +31,7 @@ public class RadioButtonTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),radioButtonPageURL);
     }
     @Test(priority = 15)
-    public void shouldGoToHomePageByClickingLogoButton() {
+    public void shouldGoToHomePageByClickingLogoButtonFromRadioButtonPage() {
         shouldGoToRadioButtonPage();
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
