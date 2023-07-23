@@ -44,30 +44,23 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(className = "rt-tbody") List <WebElement> wholeWebTable;
     public @FindBy(css = ".select-wrap.-pageSizeOptions") WebElement rowDropDownWebTables;
     public @FindBy(css = "option[value ='5']") WebElement row5WebTables;
-
-
-
-
-
-
-
     public @FindBy(id = "edit-record-4") WebElement editButtonWebTables;
     public @FindBy(id = "delete-record-4") WebElement deleteButtonWebTable;
     public @FindBy(className = "input-group-append") WebElement magnifier;
-
     public @FindBy(className = "-next") WebElement nextButtonWebTables;
     public @FindBy(css = "input[value = '2']") WebElement secondPageNumberWebTables;
     public @FindBy(className = "-previous") WebElement previousButtonWebTables;
     public @FindBy(css = "input[value = '1']") WebElement firstPageNumberWebTables;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public @FindBy(className = "rt-resizable-header-content") List <WebElement> webTableHeaderList;
+    public @FindBy(className = "rt-td") WebElement firstCellOnTable;
 
     public @FindBy(id = "doubleClickBtn") WebElement doubleClickButton;
     public @FindBy(id = "doubleClickMessage") WebElement doubleClickMessage;
-    public @FindBy(id = "rightClickBtn") WebElement rightClickButton;
-    public @FindBy(id = "rightClickMessage") WebElement rightClickMessage;
-    public @FindBy(css = ".btn.btn-primary") List<WebElement> justClickButton;
-    public @FindBy(id = "dynamicClickMessage") WebElement justClickMessage;
-
+//    public @FindBy(id = "rightClickBtn") WebElement rightClickButton;
+//    public @FindBy(id = "rightClickMessage") WebElement rightClickMessage;
+//    public @FindBy(css = ".btn.btn-primary") List<WebElement> justClickButton;
+//    public @FindBy(id = "dynamicClickMessage") WebElement justClickMessage;
+/////////////////////////////////////////////////////////////////////////////////////////////
     public @FindBy(id = "simpleLink") WebElement simpleLink;
     public @FindBy(id = "dynamicLink") WebElement dynamicLink;
     public @FindBy(xpath = "//*[@id=\"linkResponse\"]/b[1]") WebElement linkResponseLink;
@@ -116,19 +109,30 @@ public class ElementsPage extends DemoQaBase {
         }
         return false;
     }
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void clickOnJustClick() {                                            //ZA JUST CLICK
-        for (int i = 0; i < justClickButton.size(); i++) {
-            if (justClickButton.get(i).getText().equals("Click Me")) {
-                justClickButton.get(i).click();
+    public void clickOnTableTabsOnWebTables (String text) {
+        for (int i = 0; i < webTableHeaderList.size(); i++) {
+            if (webTableHeaderList.get(i).getText().equals(text)) {
+                webTableHeaderList.get(i).click();
                 break;
             }
         }
     }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public void clickOnJustClick() {                                            //ZA JUST CLICK
+//        for (int i = 0; i < justClickButton.size(); i++) {
+//            if (justClickButton.get(i).getText().equals("Click Me")) {
+//                justClickButton.get(i).click();
+//                break;
+//            }
+//        }
+//    }
 }
+
+
+
 //    public void insertDateOfBirth(String date) {
 //        DateOfBirthField.sendKeys(Keys.chord(Keys.CONTROL,"a"));
 //        DateOfBirthField.sendKeys(date);

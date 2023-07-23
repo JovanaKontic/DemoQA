@@ -20,6 +20,9 @@ public class ElementsCheckBoxPage extends DemoQaBase {
     public @FindBy(id = "result") WebElement result;
     public @FindBy (css = "span[class ='text-success']") List<WebElement> listOfTextResults;
     public @FindBy(xpath = "//*[@for='tree-node-downloads']//*[@class= 'rct-icon rct-icon-half-check']") WebElement downloadsCheckBoxHalfCheck; // how to make my own xpath
+    /*
+    https://saucelabs.com/resources/blog/selenium-tips-css-selectors
+     */
 
 
 //    Template za pretragu elemenata:

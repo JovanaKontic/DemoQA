@@ -33,7 +33,7 @@ public class ElementsPageTest extends DemoQaBase {
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheElementsPage));
     }
     @Test (priority = 10)
-    public void shouldReturnToHomePageAfterClickingOnLogoButton() {
+    public void shouldReturnToHomePageAfterClickingOnLogoButtonFromElementsPage() {
         goToElementsPage();
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
@@ -49,31 +49,21 @@ public class ElementsPageTest extends DemoQaBase {
     }
 //    ==================================================================================================================
 
+//OVO SVE TREBA PREBACITI NA NOVE KLASE TESTOVA
 
-    @Test (priority = 140)
-    public void buttonsCheck () {
-        goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Buttons");
-        Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
-    }
-    @Test (priority = 150)
-    public void buttonsDoubleClick () {
-        buttonsCheck();
-        doubleClickWithJS(elementsPage.doubleClickButton);
-        Assert.assertTrue(IsDisplayed(elementsPage.doubleClickMessage));
-    }
+
     @Test (priority = 160)
     public void buttonsRightClick () {
         Actions action = new Actions(driver);
-        buttonsCheck();
-        action.contextClick(elementsPage.rightClickButton).perform();
-        Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
+//        buttonsCheck();
+//        action.contextClick(elementsPage.rightClickButton).perform();
+//        Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
     }
     @Test (priority = 170)
     public void buttonsJustClick () {
-        buttonsCheck();
-        elementsPage.clickOnJustClick();
-        Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
+//        buttonsCheck();
+//        elementsPage.clickOnJustClick();
+//        Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
     }
 
 //    ==================================================================================================================

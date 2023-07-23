@@ -31,7 +31,7 @@ public class TextBoxTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),textBoxPageURL);
     }
     @Test(priority = 15)
-    public void shouldGoToHomePageByClickingLogoButton() {
+    public void shouldGoToHomePageByClickingLogoButtonFromTextBoxPage() {
         shouldGoToTextBoxPage();
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);

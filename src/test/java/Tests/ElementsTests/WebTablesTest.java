@@ -34,7 +34,7 @@ public class WebTablesTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),webTableURL);
     }
     @Test(priority = 15)
-    public void shouldGoToHomePageByClickingLogoButton() {
+    public void shouldGoToHomePageByClickingLogoButtonFromWebTablesPage() {
         shouldGoToWebTablesPage();
         firstPage.logoButton.click();                                   //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
@@ -305,21 +305,32 @@ public class WebTablesTest extends DemoQaBase {
         elementsPage.previousButtonWebTables.click();
         Assert.assertTrue(IsDisplayed(elementsPage.firstPageNumberWebTables));
     }
-
-
+    @Test (priority = 190)
+    public void shouldClickOnFirstNameTabToOrderByNameAsc()  {
+        shouldGoToWebTablesPage();
+        Assert.assertTrue(getTextFromWebElement(elementsPage.firstCellOnTable).equalsIgnoreCase("Cierra"));
+        elementsPage.clickOnTableTabsOnWebTables("First Name");
+        Assert.assertTrue(getTextFromWebElement(elementsPage.firstCellOnTable).equalsIgnoreCase("Alden"));
+        /*
+        Alden
+         */
+    }
+    @Test (priority = 200)
+    public void shouldClickOnFirstNameTabToOrderByNameDesc()  {
+        shouldClickOnFirstNameTabToOrderByNameAsc();
+        elementsPage.clickOnTableTabsOnWebTables("First Name");
+        Assert.assertTrue(getTextFromWebElement(elementsPage.firstCellOnTable).equalsIgnoreCase("Kierra"));
+    }
 
 /*
-    asc
-    desc
-    FN
-    (rt-th rt-resizable-header -sort-asc -cursor-pointer
-    rt-th rt-resizable-header -sort-desc -cursor-pointer)
+FOR THE PURPOSE OF THIS PROJECT IT IS REDUNDANT TO WRITE TESTS
+FOR ALL TABS TO CHECK IF THEY ARE ALSO ABLE TO
+CHANGE THE ORDER OF ITEMS IN A COLUMN
  */
-
 
     @AfterMethod
     public void shutDownTest () {
-//        driver.manage().deleteAllCookies();
-//        driver.close();
+        driver.manage().deleteAllCookies();
+        driver.close();
     }
 }

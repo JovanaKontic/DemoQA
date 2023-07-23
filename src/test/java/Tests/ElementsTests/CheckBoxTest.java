@@ -35,7 +35,7 @@ public class CheckBoxTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),checkBoxPageURL);
     }
     @Test(priority = 15)
-    public void shouldGoToHomePageByClickingLogoButton() {
+    public void shouldGoToHomePageByClickingLogoButtonFromCheckBoxPage() {
         shouldGoToCheckBoxPage();
         firstPage.logoButton.click();                                               //when click on the logo return to the home page
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
