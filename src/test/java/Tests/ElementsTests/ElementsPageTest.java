@@ -4,7 +4,6 @@ import Base.DemoQaBase;
 import Pages.FirstPage;
 import Pages.ElementsPage;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -70,7 +69,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 180)
     public void linksCheck () {
         goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Links");
+        elementsPage.clickOnTabFromElementsMenu("Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 190)
@@ -147,7 +146,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 280)
     public void brokenLinksCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Broken Links - Images");
+        elementsPage.clickOnTabFromElementsMenu("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 290)
@@ -167,7 +166,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 310)
     public void uploadAndDownloadCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Upload and Download");
+        elementsPage.clickOnTabFromElementsMenu("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 320)
@@ -188,7 +187,7 @@ public class ElementsPageTest extends DemoQaBase {
     @Test (priority = 340)
     public void dynamicPropertiesCheck ()   {
         goToElementsPage();
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Dynamic Properties");
+        elementsPage.clickOnTabFromElementsMenu("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
 //    @Test (priority = 350)
