@@ -26,7 +26,7 @@ public class TextBoxTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToTextBoxPage() {                                           //test if the button works
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Text Box");
+        elementsPage.clickOnTabFromElementsMenu("Text Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
         Assert.assertEquals(driver.getCurrentUrl(),textBoxPageURL);
     }

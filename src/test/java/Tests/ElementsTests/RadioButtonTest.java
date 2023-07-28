@@ -26,7 +26,7 @@ public class RadioButtonTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Radio Button");
+        elementsPage.clickOnTabFromElementsMenu("Radio Button");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheRadioButtonPage));
         Assert.assertEquals(driver.getCurrentUrl(),radioButtonPageURL);
     }

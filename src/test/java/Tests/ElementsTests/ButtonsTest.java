@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import javax.swing.*;
 import java.time.Duration;
 
 public class ButtonsTest extends DemoQaBase {
@@ -31,7 +30,7 @@ public class ButtonsTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToButtonsPage ()  {
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Buttons");
+        elementsPage.clickOnTabFromElementsMenu("Buttons");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheButtonsPage));
         Assert.assertEquals(driver.getCurrentUrl(),buttonsPageURL);
     }
@@ -42,24 +41,45 @@ public class ButtonsTest extends DemoQaBase {
         Assert.assertEquals(driver.getCurrentUrl(),homePageURL);
     }
     @Test(priority = 30)
-    public void ShouldDoubleClickOnDoubleClickMeWithJavaScript () {
+    public void shouldDoubleClickOnDoubleClickMeWithJavaScript() {
         /*
         https://www.browserstack.com/guide/double-click-in-selenium or ...JS
          */
         shouldGoToButtonsPage();
         doubleClickWithJS(elementsPage.doubleClickButton);
         Assert.assertTrue(IsDisplayed(elementsPage.doubleClickMessage));
+        Assert.assertTrue(elementsPage.doubleClickMessage.getText().contains("You have done a double click"));
     }
     @Test(priority = 40)
-    public void ShouldDoubleClickOnDoubleClickMeWithActionsClass () {
+    public void shouldDoubleClickOnDoubleClickMeWithActionsClass() {
         /*
         https://www.browserstack.com/guide/double-click-in-selenium or ...JS
          */
         Actions actions = new Actions(driver);
         shouldGoToButtonsPage();
         actions.doubleClick(elementsPage.doubleClickButton).perform();
+        Assert.assertTrue(IsDisplayed(elementsPage.doubleClickMessage));
+        Assert.assertTrue(elementsPage.doubleClickMessage.getText().contains("You have done a double click"));
+    }
+    /*
+    MORE HELPFULL LINKS
+    https://stackoverflow.com/questions/24749405/double-click-through-javascript-execution-for-selenium
+    https://www.geeksforgeeks.org/how-to-perform-right-click-using-java-in-selenium/
+     */
+    @Test (priority = 50)
+    public void shouldRightClickOnRightClickMeWithActionsClass() {
+        Actions actions = new Actions(driver);
+        shouldGoToButtonsPage();
+        actions.contextClick(elementsPage.rightClickButton).perform();
+        Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
+        Assert.assertTrue(elementsPage.rightClickMessage.getText().contains("You have done a right click"));
     }
 
+    
+    
+    
+    
+    
     /*
     checking other buttons
      */
@@ -69,8 +89,8 @@ public class ButtonsTest extends DemoQaBase {
 
     @AfterMethod
     public void shutDownTest () {
-//        driver.manage().deleteAllCookies();
-//        driver.close();
+        driver.manage().deleteAllCookies();
+        driver.close();
     }
 
 }

@@ -56,8 +56,8 @@ public class ElementsPage extends DemoQaBase {
 
     public @FindBy(id = "doubleClickBtn") WebElement doubleClickButton;
     public @FindBy(id = "doubleClickMessage") WebElement doubleClickMessage;
-//    public @FindBy(id = "rightClickBtn") WebElement rightClickButton;
-//    public @FindBy(id = "rightClickMessage") WebElement rightClickMessage;
+    public @FindBy(id = "rightClickBtn") WebElement rightClickButton;
+    public @FindBy(id = "rightClickMessage") WebElement rightClickMessage;
 //    public @FindBy(css = ".btn.btn-primary") List<WebElement> justClickButton;
 //    public @FindBy(id = "dynamicClickMessage") WebElement justClickMessage;
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    public void clickOnTheButtonFromTheElementsMenu(String text) {    //on ELEMENTS page to choose an item from the ELEMENTS menu
+    public void clickOnTabFromElementsMenu(String text) {    //on ELEMENTS page to choose an item from the ELEMENTS menu
         for (int i = 0; i < elementsPageList.size(); i++) {
             if (elementsPageList.get(i).getText().equals(text)) {
                 elementsPageList.get(i).click();

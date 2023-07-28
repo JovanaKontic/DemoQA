@@ -29,7 +29,7 @@ public class WebTablesTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToWebTablesPage() {                     //going to web tables page
-        elementsPage.clickOnTheButtonFromTheElementsMenu("Web Tables");
+        elementsPage.clickOnTabFromElementsMenu("Web Tables");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheWebTablesPage));
         Assert.assertEquals(driver.getCurrentUrl(),webTableURL);
     }
