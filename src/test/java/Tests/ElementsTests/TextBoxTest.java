@@ -26,7 +26,7 @@ public class TextBoxTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToTextBoxPage() {                                           //test if the button works
-        elementsPage.clickOnTabFromElementsMenu("Text Box");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Text Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheTextBoxPage));
         Assert.assertEquals(driver.getCurrentUrl(),textBoxPageURL);
     }
@@ -103,7 +103,7 @@ public class TextBoxTest extends DemoQaBase {
     }
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 }

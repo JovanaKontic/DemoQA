@@ -26,7 +26,7 @@ public class RadioButtonTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToRadioButtonPage() {   //going to radio page in elements card
-        elementsPage.clickOnTabFromElementsMenu("Radio Button");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Radio Button");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheRadioButtonPage));
         Assert.assertEquals(driver.getCurrentUrl(),radioButtonPageURL);
     }
@@ -74,7 +74,7 @@ public class RadioButtonTest extends DemoQaBase {
     }
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 }

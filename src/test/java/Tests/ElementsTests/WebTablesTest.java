@@ -29,7 +29,7 @@ public class WebTablesTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToWebTablesPage() {                     //going to web tables page
-        elementsPage.clickOnTabFromElementsMenu("Web Tables");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Web Tables");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheWebTablesPage));
         Assert.assertEquals(driver.getCurrentUrl(),webTableURL);
     }
@@ -330,7 +330,7 @@ CHANGE THE ORDER OF ITEMS IN A COLUMN
 
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 }
