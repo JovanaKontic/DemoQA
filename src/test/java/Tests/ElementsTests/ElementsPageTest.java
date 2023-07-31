@@ -68,8 +68,12 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 180)
     public void linksCheck () {
+        /*
+        treba da se promeni zato sto svaka klasa testova krece sa te stranice -elements
+
+         */
         goToElementsPage();
-        elementsPage.clickOnTabFromElementsMenu("Links");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Links");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 190)
@@ -145,8 +149,13 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 280)
     public void brokenLinksCheck ()   {
+         /*
+        treba da se promeni zato sto svaka klasa testova krece sa te stranice -elements
+
+         */
         goToElementsPage();
-        elementsPage.clickOnTabFromElementsMenu("Broken Links - Images");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Broken Links - Images");
+//        elementsPage.clickOnTabFromElementsMenu("Broken Links - Images");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 290)
@@ -165,8 +174,13 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 310)
     public void uploadAndDownloadCheck ()   {
+         /*
+        treba da se promeni zato sto svaka klasa testova krece sa te stranice -elements
+
+         */
         goToElementsPage();
-        elementsPage.clickOnTabFromElementsMenu("Upload and Download");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Upload and Download");
+//        elementsPage.clickOnTabFromElementsMenu("Upload and Download");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
     @Test (priority = 320)
@@ -186,8 +200,13 @@ public class ElementsPageTest extends DemoQaBase {
 //    ==================================================================================================================
     @Test (priority = 340)
     public void dynamicPropertiesCheck ()   {
+         /*
+        treba da se promeni zato sto svaka klasa testova krece sa te stranice -elements
+
+         */
         goToElementsPage();
-        elementsPage.clickOnTabFromElementsMenu("Dynamic Properties");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Check Box");
+//        elementsPage.clickOnTabFromElementsMenu("Dynamic Properties");
         Assert.assertTrue(IsDisplayed(elementsPage.titlePage));
     }
 //    @Test (priority = 350)

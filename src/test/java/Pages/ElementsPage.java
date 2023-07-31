@@ -92,14 +92,6 @@ public class ElementsPage extends DemoQaBase {
             }
         }
     }
-    public void clickOnTabFromElementsMenu(String text) {    //on ELEMENTS page to choose an item from the ELEMENTS menu
-        for (int i = 0; i < elementsPageList.size(); i++) {
-            if (elementsPageList.get(i).getText().equals(text)) {
-                elementsPageList.get(i).click();
-                break;
-            }
-        }
-    }
     public boolean checkInWebTableIfStringIsPresent(String string) {                                   //DA LI SADRZI STRING IZ PARAMETRA
         for (int i = 0; i < wholeWebTable.size(); i++) {
             if (wholeWebTable.get(i).getText().contains(string)) {

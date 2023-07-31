@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class DemoQaBase {
 
@@ -114,12 +115,23 @@ public class DemoQaBase {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));", element);
     }
-//    public void clickOn (WebElement element) {
-//        element.click();
-//    }
+    public void clickingOnElementInListUsingText (List<WebElement> list, String text) {
+        /*
+        list = list of web elements to choose from
+        text = item, string we are searching in a list, name of the element
+         */
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().equals(text)) {
+                list.get(i).click();
+                break;
+            }
+        }
+    }
+
 //    SCROOL DOWN
 //    JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+
     public void waitPageVisible (String url){
         waiter.until(ExpectedConditions.urlToBe(url));
     }

@@ -1,4 +1,8 @@
 dodaj komentare na engleskom
-LOGO na svakoj test stranici
 dodaj u komentare URL gde si nasla objasnjenje za manipulisanje web elementima
-napisi u komentare objasnjenja, moze ina srpskom
+napisi u komentare objasnjenja, moze i na srpskom
+
+GDE SMO STALI :
+clickOnElementsButton() - elementsPage treba da se promeni u clickingOnElementInListUsingText() - demoQABase
+
+poenta je sve petlje smanjiti sto vise mozemo

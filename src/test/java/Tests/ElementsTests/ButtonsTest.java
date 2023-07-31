@@ -3,6 +3,7 @@ package Tests.ElementsTests;
 import Base.DemoQaBase;
 import Pages.ElementsPage;
 import Pages.FirstPage;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -30,7 +31,7 @@ public class ButtonsTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToButtonsPage ()  {
-        elementsPage.clickOnTabFromElementsMenu("Buttons");
+        clickingOnElementInListUsingText (elementsPage.elementsPageList,  "Buttons");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheButtonsPage));
         Assert.assertEquals(driver.getCurrentUrl(),buttonsPageURL);
     }
@@ -89,8 +90,8 @@ public class ButtonsTest extends DemoQaBase {
 
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 
 }

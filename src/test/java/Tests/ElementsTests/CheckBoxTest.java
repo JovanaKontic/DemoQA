@@ -30,7 +30,7 @@ public class CheckBoxTest extends DemoQaBase {
     }
     @Test(priority = 10)
     public void shouldGoToCheckBoxPage()   {
-        elementsPage.clickOnTabFromElementsMenu("Check Box");
+        clickingOnElementInListUsingText(elementsPage.elementsPageList,"Check Box");
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheCheckBoxPage));
         Assert.assertEquals(driver.getCurrentUrl(),checkBoxPageURL);
     }
@@ -100,7 +100,7 @@ public class CheckBoxTest extends DemoQaBase {
     }
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 }
