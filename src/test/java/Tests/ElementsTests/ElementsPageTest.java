@@ -27,7 +27,7 @@ public class ElementsPageTest extends DemoQaBase {
         elementsPage = new ElementsPage();
     }
     public void goToElementsPage() {                                               //getting to the elements page by clicking on the elements card on the home page
-        firstPage.clickOnElementsCard();
+        clickingOnElementInListUsingText (firstPage.cardList, "Elements");
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
         Assert.assertTrue(getTextFromWebElement(elementsPage.titlePage).contains(titleOfTheElementsPage));
     }
