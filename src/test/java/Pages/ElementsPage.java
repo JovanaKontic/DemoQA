@@ -58,8 +58,8 @@ public class ElementsPage extends DemoQaBase {
     public @FindBy(id = "doubleClickMessage") WebElement doubleClickMessage;
     public @FindBy(id = "rightClickBtn") WebElement rightClickButton;
     public @FindBy(id = "rightClickMessage") WebElement rightClickMessage;
-//    public @FindBy(css = ".btn.btn-primary") List<WebElement> justClickButton;
-//    public @FindBy(id = "dynamicClickMessage") WebElement justClickMessage;
+    public @FindBy(id = "9dvLF") WebElement justClickButton;
+    public @FindBy(id = "dynamicClickMessage") WebElement justClickMessage;
 /////////////////////////////////////////////////////////////////////////////////////////////
     public @FindBy(id = "simpleLink") WebElement simpleLink;
     public @FindBy(id = "dynamicLink") WebElement dynamicLink;

@@ -3,7 +3,6 @@ package Tests.ElementsTests;
 import Base.DemoQaBase;
 import Pages.ElementsPage;
 import Pages.FirstPage;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +20,7 @@ public class ButtonsTest extends DemoQaBase {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get(elementsPageURL); //every test starts from elements page
         elementsPage = new ElementsPage();
         firstPage = new FirstPage(); // only for logo button testing
@@ -75,11 +74,17 @@ public class ButtonsTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
         Assert.assertTrue(elementsPage.rightClickMessage.getText().contains("You have done a right click"));
     }
+    @Test (priority = 00)
+    public void shouldClickOnClickMeWithJS() {
+        /*
+        .click i action class ne rade
+         */
+        shouldGoToButtonsPage();
+//        elementsPage.justClickButton.click();
+        Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
+        Assert.assertTrue(elementsPage.justClickMessage.getText().contains("You have done a dynamic click"));
+    }
 
-    
-    
-    
-    
     
     /*
     checking other buttons

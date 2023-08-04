@@ -4,11 +4,10 @@ import Base.DemoQaBase;
 import Pages.FirstPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -17,7 +16,9 @@ public class CardsTest extends DemoQaBase {
 // This test class is to check "PING" cards on the main page (https://demoqa.com/)
     @BeforeMethod
     public void setUpPage () {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         waiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(homePageURL);
@@ -26,11 +27,13 @@ public class CardsTest extends DemoQaBase {
 
     @Test (priority = 10)
     public void elementsCard () {
-        firstPage.clickOnElementsCard();
+        clickingOnElementInListUsingText(firstPage.cardList,"Elements");
         Assert.assertEquals(driver.getCurrentUrl(),elementsPageURL);
     }
+    /*
+    sve treba petlje promeniti sa clickingOnElementInListUsingText i onda promeniti ostalo
+     */
     @Test (priority = 20)
-
     public void formsCard () {
         firstPage.clickOnFormsCard();
         Assert.assertEquals(driver.getCurrentUrl(),formsPageURL);
@@ -59,8 +62,8 @@ public class CardsTest extends DemoQaBase {
     }
     @AfterMethod
     public void shutDownTest () {
-        driver.manage().deleteAllCookies();
-        driver.close();
+//        driver.manage().deleteAllCookies();
+//        driver.close();
     }
 
 }

@@ -50,22 +50,6 @@ public class ElementsPageTest extends DemoQaBase {
 
 //OVO SVE TREBA PREBACITI NA NOVE KLASE TESTOVA
 
-
-    @Test (priority = 160)
-    public void buttonsRightClick () {
-        Actions action = new Actions(driver);
-//        buttonsCheck();
-//        action.contextClick(elementsPage.rightClickButton).perform();
-//        Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
-    }
-    @Test (priority = 170)
-    public void buttonsJustClick () {
-//        buttonsCheck();
-//        elementsPage.clickOnJustClick();
-//        Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
-    }
-
-//    ==================================================================================================================
     @Test (priority = 180)
     public void linksCheck () {
         /*

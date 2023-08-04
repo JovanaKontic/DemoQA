@@ -16,14 +16,6 @@ public class FirstPage extends DemoQaBase {
     public @FindBy(css = "img[src='/images/Toolsqa.jpg']") WebElement logoButton;
 
 //======================================================
-    public void clickOnElementsCard() {
-        for (int i = 0; i < cardList.size(); i++) {
-            if (cardList.get(i).getText().equals("Elements")) {
-                cardList.get(i).click();
-                break;
-            }
-        }
-    }
     public void clickOnFormsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Forms")) {
