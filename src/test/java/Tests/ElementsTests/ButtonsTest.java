@@ -74,25 +74,30 @@ public class ButtonsTest extends DemoQaBase {
         Assert.assertTrue(IsDisplayed(elementsPage.rightClickMessage));
         Assert.assertTrue(elementsPage.rightClickMessage.getText().contains("You have done a right click"));
     }
-    @Test (priority = 00)
-    public void shouldClickOnClickMeWithJS() {
-        /*
-        .click i action class ne rade
-         */
+    @Test (priority = 60)
+    public void shouldClickOnClickMe() {
         shouldGoToButtonsPage();
-//        elementsPage.justClickButton.click();
+        clickingOnElementInListUsingText (elementsPage.buttonList,  "Click Me");
         Assert.assertTrue(IsDisplayed(elementsPage.justClickMessage));
         Assert.assertTrue(elementsPage.justClickMessage.getText().contains("You have done a dynamic click"));
     }
 
-    
     /*
-    checking other buttons
+    cant use Action class because Click me is item in a list
+    Helpful links
+    https://www.browserstack.com/guide/action-class-in-selenium
      */
-
-
-
-
+    @Test(priority = 70)
+    public void shouldPressAllTheButtonsFlow() {
+        Actions actions = new Actions(driver);
+        shouldGoToButtonsPage();
+        doubleClickWithJS(elementsPage.doubleClickButton);
+        actions.contextClick(elementsPage.rightClickButton).perform();
+        clickingOnElementInListUsingText (elementsPage.buttonList,  "Click Me");
+        Assert.assertTrue(elementsPage.doubleClickMessage.getText().contains("You have done a double click"));
+        Assert.assertTrue(elementsPage.rightClickMessage.getText().contains("You have done a right click"));
+        Assert.assertTrue(elementsPage.justClickMessage.getText().contains("You have done a dynamic click"));
+    }
     @AfterMethod
     public void shutDownTest () {
 //        driver.manage().deleteAllCookies();

@@ -16,6 +16,11 @@ public class FirstPage extends DemoQaBase {
     public @FindBy(css = "img[src='/images/Toolsqa.jpg']") WebElement logoButton;
 
 //======================================================
+    /*
+    zameni sve petlje sa  clickingOnElementInListUsingText
+
+    zasto nam treba first page - za cards ping testove 
+     */
     public void clickOnFormsCard() {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getText().equals("Forms")) {

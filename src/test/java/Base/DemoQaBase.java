@@ -127,6 +127,9 @@ public class DemoQaBase {
             }
         }
     }
+    public void clickOnElement (WebElement element) {
+        element.click();
+    }
 
 //    SCROOL DOWN
 //    JavascriptExecutor js = (JavascriptExecutor) driver;
